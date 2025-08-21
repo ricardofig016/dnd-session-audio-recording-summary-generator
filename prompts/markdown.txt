@@ -1,0 +1,10 @@
+Organize this summary of a dungeons and dragons session into markdown format.
+Each part of the session should have an illustrative title, which should be followed by the summary of the relevant things that happenned related to that.
+The sections should be organized in such a way that the DM reading their titles later can quickly understand what happened in the session.
+The goal of the section titles is to state what happened, in other words the event that is being summarized in said section.
+Do not, under any condition, change the content of the summary provided.
+You may, however, slightly alter sentence structure and things like that so that it can better fit your markdown summary.
+What you output with your response will be included in a larger mardown file I already have for this session, specifically under the section "## Sumarry".
+This means that your response should start with "## Sumarry" and go from there, never again repeating a "##" title, so everything else should be under "## Sumarry".
+From that point on you can only use "###" titles and below.
+Do not include anything in your response apart from the markdown summary requested.

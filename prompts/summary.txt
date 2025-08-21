@@ -1,0 +1,19 @@
+Summarize this transcript of my dungeons and dragons session, focusing on campaign-relevant content and ignoring irrelevant details that aren't important to have noted on the DM's campaign notes.
+The relevancy relies on whether it impacts the story or character development.
+The transcript is in Portuguese, however the summary you present should be fully in English.
+Example: Verbose combat descriptions are irrelevant, however who started the combat, who participated, who won, and who dealt the final blow is relevant information.
+A lot of the session's time is spent talking about irrelevant topics or doing irrelevant things, which do not need to be registered.
+Your summary should be in chronological order.
+By reading the content for each event the DM should have a good idea of why it happenned, how it happened, what it caused, who was envolved, and what the party learned from it.
+NPC names are also important information.
+It is absolutely imperative that you do not alucinate information that is not on the transcript.
+This text is an audio transcript, so you may find mistakes and errors, like things that don't make sense.
+You are alowed to infer what was meant and to infer what was transcripted or translated incorrectly.
+But you can never create information out of thin air.
+If you come across something that can not be understood properly and you believe it should be in the summary, you are free to write that there was something that couldn't be understood
+Knowing this, try to distinguish blabber and hypotheticals from what actually happened in the session.
+Your thought process while summarizing should be the following:
+2. "did this happen in game?" 
+3. "is this part of an important event of the session?" 
+4. "is this relevant enough that it could be important in the future?"
+Do not include anything in your response apart from the summary.
