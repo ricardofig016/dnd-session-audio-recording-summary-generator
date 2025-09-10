@@ -10,9 +10,12 @@ load_dotenv()
 
 CURRENT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-SESSION_NUMBER = "2"
+SESSION_NUMBER = "3"
 FILE_FORMAT = "m4a"
 AUDIO_FILE = f"C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/assets/session {SESSION_NUMBER} audio.{FILE_FORMAT}"
+PREVIOUS_SESSION_NOTES_FILE = "C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions/Session 2 - The Regicide Mystery.md"
+with open(PREVIOUS_SESSION_NOTES_FILE, "r", encoding="utf-8") as file:
+    PREVIOUS_SESSION_NOTES = file.read()
 WHISPER_MODEL = "turbo"  # turbo for best results, small for faster results
 
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
@@ -67,7 +70,7 @@ def transcribe_audio():
 
 
 # Summarize the transcript
-def summarize_text(text):
+def summarize_text(text_transcript):
     print("Summarizing text...")
 
     start_time = time.time()
@@ -76,7 +79,7 @@ def summarize_text(text):
         messages=[
             {
                 "role": "user",
-                "content": f"{SUMMARY_PROMPT}\n\n{text}",
+                "content": f"{SUMMARY_PROMPT}\n\nFor context, here are notes from last session:\n{PREVIOUS_SESSION_NOTES}\n\nHere is the session transcript to summarize:\n{text_transcript}",
             },
         ],
         stream=False,
