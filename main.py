@@ -1,3 +1,5 @@
+# pip install whisper python-dotenv openai
+
 import os
 import time
 import whisper
@@ -10,10 +12,10 @@ load_dotenv()
 
 CURRENT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-SESSION_NUMBER = "3"
+SESSION_NUMBER = "4"
 FILE_FORMAT = "m4a"
 AUDIO_FILE = f"C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/assets/session {SESSION_NUMBER} audio.{FILE_FORMAT}"
-PREVIOUS_SESSION_NOTES_FILE = "C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions/Session 2 - The Regicide Mystery.md"
+PREVIOUS_SESSION_NOTES_FILE = "C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions/Session 3 - The Low City.md"
 with open(PREVIOUS_SESSION_NOTES_FILE, "r", encoding="utf-8") as file:
     PREVIOUS_SESSION_NOTES = file.read()
 WHISPER_MODEL = "turbo"  # turbo for best results, small for faster results
