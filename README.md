@@ -33,14 +33,15 @@ project-root/
 
 ## Usage
 
-1. Change the path to your audio file in `main.py`
-2. Run the main script:
+1. Create the file `.env` at the project root with `DEEPSEEK_API_KEY=[your deepseek api key]`
+2. Change the `AUDIO_FILE` variable in `main.py` to the path to your audio file
+3. Run the main script:
 
    ```powershell
    python main.py
    ```
 
-3. The script will process the audio and generate summaries in both markdown and plain text formats in each session folder.
+4. The script will process the audio and generate summaries in both markdown and plain text formats in each session folder.
 
 ## Requirements
 
