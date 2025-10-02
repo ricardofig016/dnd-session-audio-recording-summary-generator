@@ -8,7 +8,7 @@ def send_custom_prompt_request(session_number, custom_prompt, deepseek_api_key):
     base_deepseek_api_url = "https://api.deepseek.com"
     deepseek_client = OpenAI(api_key=deepseek_api_key, base_url=base_deepseek_api_url)
 
-    # Get transcript from session
+    # get transcript from session
     current_dir = os.path.dirname(os.path.abspath(__file__))
     session_directory = os.path.join(current_dir, f"sessions/session_{session_number}")
     transcript_path = os.path.join(session_directory, "transcript.txt")
@@ -82,24 +82,16 @@ def main():
         print(response)
 
         # save the response
-        save_response = input(
-            "\nDo you want to save this response to a file? (y/n): "
-        ).lower()
-        if save_response == "y":
-            filename = input("Enter filename (without extension): ").strip()
-            if not filename:
-                filename = "output"
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        response_directory = os.path.join(current_dir, "custom_prompt")
+        os.makedirs(response_directory, exist_ok=True)
 
-            current_dir = os.path.dirname(os.path.abspath(__file__))
-            response_directory = os.path.join(current_dir, "custom_prompt")
-            os.makedirs(response_directory, exist_ok=True)
+        output_path = os.path.join(response_directory, "output.txt")
+        with open(output_path, "w", encoding="utf-8") as file:
+            file.write(f"Custom Prompt:\n{custom_prompt}\n\n")
+            file.write(f"Response:\n{response}")
 
-            output_path = os.path.join(response_directory, f"{filename}.txt")
-            with open(output_path, "w", encoding="utf-8") as file:
-                file.write(f"Custom Prompt:\n{custom_prompt}\n\n")
-                file.write(f"Response:\n{response}")
-
-            print(f"Response saved to: {output_path}")
+        print(f"Response saved to: {output_path}")
 
     except FileNotFoundError as e:
         print(f"Error: {e}")
