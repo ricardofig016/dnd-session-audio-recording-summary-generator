@@ -1,20 +1,55 @@
-Summarize this transcript of my dungeons and dragons session, focusing on campaign-relevant content and ignoring irrelevant details that aren't important to have noted on the DM's campaign notes.
-The relevancy relies on whether it impacts the story or character development. Make sure to include everything that may be relevant and that needs to be remembered for later sessions.
+Summarize this transcript of my Dungeons & Dragons session. Produce a long, comprehensive, chronological summary that records all parts of the session — major and minor — and mentions every character, NPC, place, encounter, and event that appears in the transcript. Do not omit minor names, minor events, or brief conversational beats; include them so the DM has a complete record.
+
 The session is part of a campaign featuring a party of 4 players: Ara the tiefling paladin (played by Beatriz), Fern the wood elf monk (played by Inês), Freya the high elf bard (played by Carolina), and Kael the half elf rogue (played by Afonso).
-The transcript is in Portuguese, however the summary you present should be fully in English.
-Example: Verbose combat descriptions are irrelevant, however who started the combat, who participated, who won, and who dealt the final blow is relevant information.
-A lot of the session's time is spent talking about irrelevant topics or doing irrelevant things, which do not need to be registered.
+
+The transcript is in Portuguese; the summary you present should be fully in English.
+
+Conversational or off-topic moments should be recorded (briefly) rather than omitted, so the DM can see the full context of the session. All new or returning NPCs should be recorded with their names, short descriptions, and what they did during the session. The same applies to locations, encounters, items, and clues discovered.
 Your summary should be in chronological order.
-By reading the content for each event the DM should have a good idea of why it happenned, how it happened, what it caused, who was envolved, and what the party learned from it.
-NPC names are also important information.
-It is absolutely imperative that you do not hallucinate information that is not on the transcript.
-This text is an audio transcript, so you may find mistakes and errors, like things that don't make sense.
-You are alowed to infer what was meant and to infer what was transcripted or translated incorrectly.
-But you can never create information out of thin air.
-If you come across something that can not be understood properly and you believe it should be in the summary, you are free to write that there was something that couldn't be understood
-Knowing this, try to distinguish blabber and hypotheticals from what actually happened in the session.
-Your thought process while summarizing should be the following:
-2. "did this happen in game?" 
-3. "is this part of an important event of the session?" 
-4. "is this relevant enough that it could be important in the future?"
+
+By reading each event in your summary the DM should understand why it happened, how it happened, what consequences it caused, who was involved, and what the party learned.
+
+It is imperative that you do not hallucinate information that is not present in the transcript. This is an audio transcript and may contain errors or unclear passages; you are allowed to infer likely meanings or corrections when reasonable, but never invent facts. If something is unintelligible yet important, state explicitly that it could not be understood.
+
+When summarizing, clearly distinguish speculation, hypotheticals, and banter from actual in-game actions and outcomes.
+
+Formatting and style:
+- The summary must be **highly structured, concise, and easy to scan**.
+- Prefer short, direct sentences over long narrative paragraphs.
+- Break complex actions into multiple short lines instead of one long sentence.
+- Use **bold**, *italics*, `code spans`, bullet lists, and tables where they improve clarity and skimmability.
+
+Overall organization:
+- Present events in **strict chronological order**.
+- Structure the summary into **sections** with clear headings (e.g. `### Scene: Tavern Arrival`, `### Combat: Crystal Nest Ambush`).
+- Inside each section, list actions and beats as short lines, not as dense prose paragraphs.
+
+Required content to track:
+- **PCs**: Always name which party members are involved in each action.
+- **NPCs**: For every new or returning NPC, record:
+	- Name.
+	- Brief descriptor (race/role/attitude if available).
+	- What they do in this session.
+- **Locations**: For each distinct place mentioned, record name, type (e.g. city, tavern, dungeon room), and its role in the scene.
+- **Encounters**: Note all combats, social conflicts, puzzles, and hazards, with participants and outcomes.
+- **Items & clues**: Track any item, resource, or clue found, used, or lost, plus its apparent importance.
+- **Decisions & consequences**: Clearly mark important choices, their reasons (when stated), and immediate consequences.
+
+Distinguishing types of content:
+- Clearly separate:
+	- **In-game actions and outcomes**.
+	- *Player speculation and planning*.
+	- *Banter and out-of-character chatter*.
+- For speculation or unclear information, use qualifiers like *"the party suspects…"*, *"it sounds like…"*, or explicitly state that audio transcript is unintelligible.
+
+Structural blocks:
+- At the start, include a brief **Overview** section with short lines summarizing the main arcs of the session.
+- Then provide detailed sections for each scene or major phase, in order.
+- Optionally add compact tables, only when helpful (create your own), for example:
+	- **NPCs met this session** (Name | Description | First scene | Key actions).
+	- **Important locations** (Name | Type | What happened there).
+	- **Ongoing threads** (Thread | What happened today | Open questions).
+
+By reading each short line, the DM should quickly understand why the event happened, how it happened, what consequences it caused, who was involved, and what the party learned, without needing to parse long paragraphs.
+
 Do not include anything in your response apart from the summary.

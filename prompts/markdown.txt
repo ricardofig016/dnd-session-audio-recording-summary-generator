@@ -1,10 +1,51 @@
-Organize this summary of a dungeons and dragons session into markdown format.
-Each part of the session should have an illustrative title, which should be followed by the summary of the relevant things that happenned related to that.
-The sections should be organized in such a way that the DM reading their titles later can quickly understand what happened in the session.
-The goal of the section titles is to state what happened, in other words the event that is being summarized in said section.
-Do not, under any condition, change the content of the summary provided.
-You may, however, slightly alter sentence structure and things like that so that it can better fit your markdown summary.
-What you output with your response will be included in a larger mardown file I already have for this session, specifically under the section "## Summary".
-This means that your response should start with "## Summary" and go from there, never again repeating a "##" title, so everything else should be under "## Summary".
-From that point on you can only use "###" titles and below.
-Do not include anything in your response apart from the markdown summary requested.
+Format this summary of a Dungeons & Dragons session into Markdown.
+
+You will also receive, as context, the compiled notes from all previous sessions. These notes contain Obsidian-style wikilinks such as `[[Fruit Town]]`. In your output, you are allowed—and encouraged—to add similar `[[...]]` wikilinks wherever it makes sense.
+
+Overall goals:
+
+- Produce clean, readable Markdown for the current session summary.
+- Enrich the text with Obsidian-style wikilinks that match the style and "vibe" of the previous session notes.
+
+Rules about content and structure:
+
+- Preserve the original order and high-level narrative flow. Do NOT reorder or omit events.
+- You may make minimal edits to punctuation or sentence breaks to improve readability, but do not change the underlying facts.
+- Do not invent new section titles or perform large-scale reorganization of the narrative.
+- Only convert existing structural cues (explicit headings, obvious title lines, or clear blank-line-separated sections) into Markdown headings. If the input contains no headings or clear sections, leave the content as paragraphs.
+
+Rules about wikilinks (`[[...]]`):
+
+- These wikilinks will be used as Markdown links to other Obsidian notes.
+- You are explicitly allowed to introduce new `[[...]]` links that were not present in the input.
+- Add wikilinks where it feels natural that there could be a separate note or page—for example, for:
+	- Named locations (e.g., towns, dungeons, planes, taverns).
+	- Named NPCs, factions, gods, organizations, or recurring monsters.
+	- Items, artifacts, quests, events, combats, puzzles, creatures, species, or plot arcs.
+- When choosing link titles, follow the naming style and "vibe" you see in the previous session notes (e.g., `[[Fruit Town]]`, `[[The Bramble Court]]`, etc.).
+- Do not over-link every single noun; prioritize entities that seem important enough to deserve their own page.
+- You may wrap an existing name in `[[...]]` or, if needed for clarity, slightly normalize/spell out a name before linking (e.g., turning "Fruit town" into `[[Fruit Town]]`).
+- Always add wikilinks to words that already have wikilinks in previous session notes. 
+
+Required wrapper for the output:
+
+- The output will be inserted under the section `## Summary` in a larger Markdown file. Therefore your response MUST begin with the exact line:
+
+## Summary
+
+- Do NOT include any other top-level `##` headings in your output. You may use `###` headings and lower-level Markdown elements (bold, italics, lists, code spans, paragraphs) only when those elements are directly supported by the original input (e.g., an existing heading or explicit list).
+- Do not include any explanations, commentary, or metadata outside the Markdown itself.
+
+Examples of allowed changes:
+
+- Fixing a run-on sentence with a period and keeping both sentences intact.
+- Turning an existing short title line into a `###` heading when the input already had a title.
+- Wrapping a location name like "fruit town" as `[[Fruit Town]]` to match the linking style of earlier notes.
+
+Disallowed changes:
+
+- Creating new `###` headings that summarize or reorganize events when the original input had none.
+- Removing, condensing, or expanding factual content.
+- Adding commentary, suggestions, or external context outside of Obsidian-style wikilinks.
+
+Output only the formatted Markdown starting with `## Summary` and nothing else.
