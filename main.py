@@ -1,5 +1,3 @@
-# pip install whisper python-dotenv openai
-
 import os
 import time
 import whisper
@@ -7,17 +5,49 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 
+def get_session_number(file):
+    file_name = os.path.splitext(file)[0]
+    session_number = float(file_name.split(" ")[1].strip())
+    if session_number.is_integer():
+        session_number = int(session_number)
+    return session_number
+
+
+def get_markdown_file_paths(notes_directory):
+    files = {}
+    for file in os.listdir(notes_directory):
+        if file.lower().startswith("session") and file.endswith(".md"):
+            session_number = get_session_number(file)
+            files[session_number] = file
+    file_paths = [
+        os.path.join(notes_directory, files[key]) for key in sorted(files.keys())
+    ]
+    return file_paths
+
+
+def get_text_from_file(file):
+    title = os.path.splitext(os.path.basename(file))[0]
+    content = f"# {title}\n\n"
+    with open(file, "r", encoding="utf-8") as f:
+        content += f.read()
+    return content
+
+
 # Configuration
 load_dotenv()
 
 CURRENT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-SESSION_NUMBER = "4"
+SESSION_NUMBER = "8"
 FILE_FORMAT = "m4a"
 AUDIO_FILE = f"C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/assets/session {SESSION_NUMBER} audio.{FILE_FORMAT}"
-PREVIOUS_SESSION_NOTES_FILE = "C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions/Session 3 - The Low City.md"
-with open(PREVIOUS_SESSION_NOTES_FILE, "r", encoding="utf-8") as file:
-    PREVIOUS_SESSION_NOTES = file.read()
+
+SESSION_NOTES_DIRECTORY = "C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions"
+SESSION_NOTES_FILES = get_markdown_file_paths(SESSION_NOTES_DIRECTORY)
+ALL_SESSION_NOTES = ""
+for notes_file in SESSION_NOTES_FILES:
+    ALL_SESSION_NOTES += get_text_from_file(notes_file) + f"\n\n{'='*40}\n\n"
+
 WHISPER_MODEL = "turbo"  # turbo for best results, small for faster results
 
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
@@ -81,7 +111,7 @@ def summarize_text(text_transcript):
         messages=[
             {
                 "role": "user",
-                "content": f"{SUMMARY_PROMPT}\n\nFor context, here are notes from last session:\n{PREVIOUS_SESSION_NOTES}\n\nHere is the session transcript to summarize:\n{text_transcript}",
+                "content": f"{SUMMARY_PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n{ALL_SESSION_NOTES}\n\nHere is the session transcript to summarize:\n{text_transcript}",
             },
         ],
         stream=False,
@@ -107,7 +137,7 @@ def generate_markdown_summary(text):
         messages=[
             {
                 "role": "user",
-                "content": f"{MARKDOWN_PROMPT}\n\n{text}",
+                "content": f"{MARKDOWN_PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n{ALL_SESSION_NOTES}\n\nHere is the session summary to format in Markdown:\n{text}",
             },
         ],
         stream=False,
