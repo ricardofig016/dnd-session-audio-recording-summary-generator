@@ -10,52 +10,28 @@ def generate_campaign_summary(deepseek_api_key):
 
     # setup
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    sessions_dir = os.path.join(current_dir, "sessions")
-    if not os.path.exists(sessions_dir):
-        raise FileNotFoundError(f"Sessions directory not found: {sessions_dir}")
+    combined_sessions_path = os.path.join(current_dir, "combined_sessions.md")
+    if not os.path.exists(combined_sessions_path):
+        raise FileNotFoundError(
+            f"Combined sessions file not found: {combined_sessions_path}"
+        )
 
-    session_dirs = [
-        dir
-        for dir in os.listdir(sessions_dir)
-        if os.path.isdir(os.path.join(sessions_dir, dir))
-    ]
-    if not session_dirs:
-        raise ValueError(f"No session directories found in: {sessions_dir}")
-    session_dirs.sort()
+    with open(combined_sessions_path, "r", encoding="utf-8") as file:
+        combined_sessions_content = file.read()
 
-    session_numbers = [dir.split("_")[-1] for dir in session_dirs]
+    if not combined_sessions_content.strip():
+        raise ValueError(f"Combined sessions file is empty: {combined_sessions_path}")
 
-    # get summaries from all sessions
-    summaries = []
-    for i in range(len(session_dirs)):
-        session_dir = session_dirs[i]
-        session_path = os.path.join(sessions_dir, session_dir)
-        summary_path = os.path.join(session_path, "summary.md")
-
-        if not os.path.exists(summary_path):
-            print(f"Warning: Summary file not found for {session_dir}, skipping.")
-            continue
-
-        with open(summary_path, "r", encoding="utf-8") as file:
-            summary = file.read()
-
-        if not summary.strip():
-            print(f"Warning: Summary file is empty for {session_dir}, skipping.")
-            continue
-
-        summary = f"# Session {session_numbers[i]}\n{summary.strip()}"
-        summaries.append(summary)
-
-    if not summaries:
-        raise ValueError(f"No valid summaries found in: {sessions_dir}")
-
-    # create custom prompt
-    intro_prompt = "Based on the following DnD session summaries, generate a comprehensive campaign summary. Ensure the summary captures key plot points, character developments, and significant events.\n\nSession Summaries:\n"
-    between_sessions_prompt = "\n\n---\n\n"
-    prompt = intro_prompt + between_sessions_prompt.join(summaries)
+    # create custom prompt using the precompiled combined sessions file
+    intro_prompt = (
+        "Based on the following DnD session summaries, generate a comprehensive "
+        "campaign summary. Ensure the summary captures key plot points, character "
+        "developments, and significant events.\n\nSession Summaries:\n"
+    )
+    prompt = intro_prompt + combined_sessions_content.strip()
 
     # send request to DeepSeek API
-    print(f"Generating campaign summary for sessions: {', '.join(session_numbers)}")
+    print("Generating campaign summary from combined_sessions.md")
 
     start_time = time.time()
     response = deepseek_client.chat.completions.create(

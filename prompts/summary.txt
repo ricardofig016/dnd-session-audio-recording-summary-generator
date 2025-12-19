@@ -23,6 +23,7 @@ Overall organization:
 - Present events in **strict chronological order**.
 - Structure the summary into **sections** with clear headings (e.g. `### Scene: Tavern Arrival`, `### Combat: Crystal Nest Ambush`).
 - Inside each section, list actions and beats as short lines, not as dense prose paragraphs.
+- Write in the present tense, (e.g. "They explore the forest" instead of "They explored the forest").
 
 Required content to track:
 - **PCs**: Always name which party members are involved in each action.
@@ -43,9 +44,9 @@ Distinguishing types of content:
 - For speculation or unclear information, use qualifiers like *"the party suspects…"*, *"it sounds like…"*, or explicitly state that audio transcript is unintelligible.
 
 Structural blocks:
-- At the start, include a brief **Overview** section with short lines summarizing the main arcs of the session.
-- Then provide detailed sections for each scene or major phase, in order.
-- Optionally add compact tables, only when helpful (create your own), for example:
+- At the start, include a brief **Overview** section with Date, Location, Participants, and Main Events, bullet points summarizing the main arcs of the session.
+- Then provide detailed sections for each scene or major phase, in order. Each section must start with a tag and be followed by the section title, in the format "Tag: Descriptive Title" (e.g. `### Scene: Tavern Arrival`, `### Combat: Assassin Ambush`, `Puzzle: The Teleportation Circle`). Possible tags include Scene, Travel, Downtime, Flashback, Social, Intrigue, Interrogation, Revelation, Conflict, Romance, Exploration, Investigation, Discovery, Hazard, Mystery, Combat, Skirmish, Battle, Ambush, Siege, Duel, Puzzle, Ritual, Prophecy, Arcana, Curse, Location, Stronghold, Faction, Audience, Backstory, Training, Bond, Downtime, Recap, Planning, Aftermath, Hook, Epilogue.
+- Optionally add compact tables when helpful (create your own), for example:
 	- **NPCs met this session** (Name | Description | First scene | Key actions).
 	- **Important locations** (Name | Type | What happened there).
 	- **Ongoing threads** (Thread | What happened today | Open questions).

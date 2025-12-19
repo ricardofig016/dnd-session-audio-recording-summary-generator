@@ -1,6 +1,6 @@
 Format this summary of a Dungeons & Dragons session into Markdown.
 
-You will also receive, as context, the compiled notes from all previous sessions. These notes contain Obsidian-style wikilinks such as `[[Fruit Town]]`. In your output, you are allowed—and encouraged—to add similar `[[...]]` wikilinks wherever it makes sense.
+You will also receive, as context, the compiled notes from all previous sessions. These notes contain Obsidian-style wikilinks such as `[[Fruit Town]]`. In your output, you are allowed—and encouraged—to add similar `[[link]]` or `[[link|display text]]` wikilinks wherever it makes sense.
 
 Overall goals:
 

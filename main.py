@@ -38,7 +38,7 @@ load_dotenv()
 
 CURRENT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-SESSION_NUMBER = "8"
+SESSION_NUMBER = "11"
 FILE_FORMAT = "m4a"
 AUDIO_FILE = f"C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/assets/session {SESSION_NUMBER} audio.{FILE_FORMAT}"
 
@@ -47,6 +47,10 @@ SESSION_NOTES_FILES = get_markdown_file_paths(SESSION_NOTES_DIRECTORY)
 ALL_SESSION_NOTES = ""
 for notes_file in SESSION_NOTES_FILES:
     ALL_SESSION_NOTES += get_text_from_file(notes_file) + f"\n\n{'='*40}\n\n"
+
+# save to file
+with open("combined_sessions.md", "w", encoding="utf-8") as file:
+    file.write(ALL_SESSION_NOTES.strip())
 
 WHISPER_MODEL = "turbo"  # turbo for best results, small for faster results
 
