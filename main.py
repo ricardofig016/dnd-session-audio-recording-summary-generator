@@ -38,7 +38,7 @@ load_dotenv()
 
 CURRENT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-SESSION_NUMBER = "11"
+SESSION_NUMBER = "12"
 FILE_FORMAT = "m4a"
 AUDIO_FILE = f"C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/assets/session {SESSION_NUMBER} audio.{FILE_FORMAT}"
 

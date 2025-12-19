@@ -1,6 +1,6 @@
 Format this summary of a Dungeons & Dragons session into Markdown.
 
-You will also receive, as context, the compiled notes from all previous sessions. These notes contain Obsidian-style wikilinks such as `[[Fruit Town]]`. In your output, you are allowed—and encouraged—to add similar `[[link]]` or `[[link|display text]]` wikilinks wherever it makes sense.
+You will also receive, as context, the compiled notes from all previous sessions. These notes contain Obsidian-style wikilinks such as `[[Fruit Town]]`. In your output, you are allowed—and encouraged—to add similar `[[link]]` or `[[link|display text]]` wikilinks wherever it makes sense. IMPORTANT: you CANNOT use `[[link|display text]]` inside tables, as it will break them, use only `[[link]]` when working inside a table.
 
 Overall goals:
 
@@ -23,6 +23,7 @@ Rules about wikilinks (`[[...]]`):
 	- Named NPCs, factions, gods, organizations, or recurring monsters.
 	- Items, artifacts, quests, events, combats, puzzles, creatures, species, or plot arcs.
 - When choosing link titles, follow the naming style and "vibe" you see in the previous session notes (e.g., `[[Fruit Town]]`, `[[The Bramble Court]]`, etc.).
+- Do not use wikilinks with bars (`[[link|display text]]`) inside of tables as it ruins the table formatting.
 - Do not over-link every single noun; prioritize entities that seem important enough to deserve their own page.
 - You may wrap an existing name in `[[...]]` or, if needed for clarity, slightly normalize/spell out a name before linking (e.g., turning "Fruit town" into `[[Fruit Town]]`).
 - Always add wikilinks to words that already have wikilinks in previous session notes. 

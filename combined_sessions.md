@@ -1,4 +1,4 @@
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 0.1 - Ara's Hunt
+# Session 0.1 - Ara's Hunt
 
 ## Summary
 
@@ -15,7 +15,7 @@ Participants: [[Aranith Eanobra]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 0.2 - Fern's Rescue Mission
+# Session 0.2 - Fern's Rescue Mission
 
 ## Summary
 
@@ -33,7 +33,7 @@ Participants: [[Elowen Fernwyn]], [[Aranith Eanobra]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 0.3 - Freya's Investigation
+# Session 0.3 - Freya's Investigation
 
 ## Summary
 
@@ -63,7 +63,7 @@ Participants: [[Freya Moondancer]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 1 - The First Boss
+# Session 1 - The First Boss
 
 ## Summary
 
@@ -91,7 +91,7 @@ Participants: [[Aranith Eanobra]], [[Elowen Fernwyn]], [[Freya Moondancer]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 1.1 - Kael's Arrival
+# Session 1.1 - Kael's Arrival
 
 ## Summary
 
@@ -121,7 +121,7 @@ Participants: [[Kael Raval]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 2 - The Regicide Mystery
+# Session 2 - The Regicide Mystery
 
 ## Summary
 
@@ -181,7 +181,7 @@ Participants: [[Party 1]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 3 - The Low City
+# Session 3 - The Low City
 
 ## Summary
 
@@ -227,7 +227,7 @@ Participants: [[Party 1]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 4 - Spider Cleaning Job
+# Session 4 - Spider Cleaning Job
 
 ## Summary
 
@@ -300,7 +300,7 @@ Participants: [[Party 1]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 5 - The First Orb
+# Session 5 - The First Orb
 
 ## Summary
 
@@ -355,7 +355,7 @@ Participants: [[Party 1]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 6 - Meilavan and Magnus
+# Session 6 - Meilavan and Magnus
 
 ## Summary
 
@@ -405,7 +405,7 @@ Participants: [[Party 1]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 7 - Webs and Crystals
+# Session 7 - Webs and Crystals
 
 ## Summary
 
@@ -454,7 +454,7 @@ Participants: [[Party 1]]
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 8 - Faerie Dragons and a Tp Circle
+# Session 8 - Faerie Dragons and a Tp Circle
 
 ## Summary
 
@@ -552,7 +552,7 @@ The main point of contention was the risk of entering an unknown location withou
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 9.1 - Velastra's Lab
+# Session 9.1 - Velastra's Lab
 
 ## Summary
 
@@ -688,7 +688,7 @@ The main point of contention was the risk of entering an unknown location withou
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 9.2 - Silencer's Hideout
+# Session 9.2 - Silencer's Hideout
 
 ## Summary
 
@@ -756,7 +756,7 @@ The group left the hideout. They passed the butcher, and [[Kael Raval|Kael]] suc
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 10 - The Tiefling Witch
+# Session 10 - The Tiefling Witch
 
 ## Summary
 
@@ -823,7 +823,7 @@ The [[Party 1]] leaves the mine entrance, heading back toward the city. [[Aranit
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 11
+# Session 11 - Evangeline, the Fortune Teller
 
 ## Summary
 
@@ -867,7 +867,7 @@ The party heads toward the city center and notices an influx of people. They dis
 A voice from a tent calls "Aranith!". Inside is **[[Evangeline]]**, a fortune teller. She offers card draws.
 
 #### Card Draw: Ara's Free Draw
-[[Aranith Eanobra|Ara]] agrees to one free card draw. She draws a card that permanently increases her walking speed by 10 feet.
+[[Aranith Eanobra|Ara]] agrees to one free card draw. She draws a card that permanently increases her speed by 10 feet.
 
 #### Card Draw: Kael's Paid Draws
 [[Evangeline]] persuades [[Kael Raval|Kael]] to draw two cards for 100 gold.
@@ -899,7 +899,7 @@ The party goes to [[Magnus]] for research. He gives them **45 minutes** with thr
 
 #### Research Findings:
 *   **Mythical Creatures:** [[Storm Giant]]s live in the deep ocean or on magical clouds. Dragons are divided into True Dragons (Chromatics, Metallics, Gem), Miscellaneous Dragons, and Lesser Dragons.
-*   **Geography of Yekrataez:** The [[Fort of Iraaki]] is believed to have a large dungeon underneath. The [[Dwarven Hills]] are a massive east-west barrier infested with giants and monsters.
+*   **Geography of [[Yeukraqaesh]]:** The [[Fort of Iraaki]] is believed to have a large dungeon underneath. The [[Dwarven Hills]] are a massive east-west barrier infested with giants and monsters.
 *   **How to Survive a Dragon:** Contains general advice and has an inlaid, glowing **silver dragon scale** on its cover.
 
 [[Freya Moondancer|Freya]] shows [[Magnus]] the book ***"The Great War: The Tieflings' Side."*** [[Magnus]] proposes a trade for his Mythical Creatures book, but the party declines.
@@ -930,13 +930,174 @@ The party leaves [[Magnus]]'s home. It is now nightfall and the **[[Fire Festiva
 
 ========================================
 
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 12
+# Session 12
+
+## Summary
+
+### Overview
+**Date:** 18th April 304
+**Location:** Outside [[Magnus]]'s House, [[Low City]] Center, [[Beshkarl]]
+**Participants:** [[Aranith Eanobra|Ara]], [[Elowen Fernwyn|Fern]], [[Freya Moondancer|Freya]], [[Kael Raval|Kael]], [[Alice]] (NPC), [[Meilavan]] (NPC)
+**Main Events:**
+*   The party takes a Short Rest outside [[Magnus]]'s house, engaging in individual activities.
+*   They attend the [[Fire Festival]] in [[Low City]], participating in various games and contests.
+*   They are approached by a kobold, [[Limo]], who asks for help with a [[Hill Giant]] terrorizing his village, [[Bone-Choke]].
+*   The party is attacked by [[Velastra]] (the Blue Tiefling), who uses powerful magic to stun [[Aranith Eanobra|Ara]] and steal the [[Orb of Abjuration]].
+*   The party fights back, and [[Kael Raval|Kael]] uses *Mage Hand* to retrieve the orb before [[Velastra]] escapes on her [[Griffon]].
+*   The party decides to keep the orb and hide it, ending the session planning to rest.
+
+### Scene: Short Rest Outside Magnus's House
+**Location:** Streets of [[Low City]], outside [[Magnus]]'s home.
+*   **[[Party 1]]** decides to take a **Short Rest** outside before heading to the [[Fire Festival]].
+*   **[[Aranith Eanobra|Ara]]** attunes to the **[[Orb of Abjuration]]**.
+    *   She gains a permanent **blue magical aura** and a +3 bonus to AC.
+    *   She feels protected by the gods.
+*   **[[Elowen Fernwyn|Fern]]** attempts to befriend a lizard using a carrot. She fails an Animal Handling check.
+*   **[[Kael Raval|Kael]]** attempts to study the stolen book ***"The Great War: The Tieflings' Side."***
+    *   Upon opening it, a yellow light blinds her and she gains the [[Curse of the False Font]], a tattoo on his left eye (a pentagram with an eye in the center).
+    *   The curse gives him **Disadvantage on checks related to reading, deciphering, or translating text or images**.
+    *   He makes a successful Arcana check and learns the curse can be removed with a *Remove Curse* spell (3rd level).
+*   **[[Kael Raval|Kael]]** goes to the blacksmith, [[Duarte]], and sells the Glaive he previously stole for **20 gold pieces**.
+*   **[[Meilavan]]** and **[[Alice]]** are present but do not engage in notable activities during the rest.
+
+### Scene: The Fire Festival Begins
+**Location:** [[Low City]] Center, site of the [[Fire Festival]].
+*   The party walks to the city center as night falls. The festival has begun.
+*   The central feature is a **large bonfire** (4.5m x 4.5m). There are food stalls, people in fire-themed costumes, performers, and activities.
+
+### Social: Festival Activities & The Chili-Eating Contest
+**Location:** [[Low City]] Center, [[Fire Festival]].
+*   **[[Kael Raval|Kael]]** notices a **chili-eating contest** run by a large, barrel-chested man.
+*   [[Kael Raval|Kael]] enters the contest against a stranger and wins **5 gold pieces**.
+
+### Skill Challenge: The Fire-Jumping Game
+**Location:** [[Low City]] Center, [[Fire Festival]], near the bonfire.
+*   The party sees a game where participants must **jump over a 4.5-meter-wide bonfire**.
+*   **[[Freya Moondancer|Freya]]** and **[[Elowen Fernwyn|Fern]]** decide to try.
+*   **[[Freya Moondancer|Freya]]** succeeds and gains **Inspiration**.
+*   **[[Elowen Fernwyn|Fern]]** fails twice, taking **2 fire damage** each time.
+
+### Social: Balloon Launch & Talking with Locals
+**Location:** [[Low City]] Center, [[Fire Festival]].
+*   The party helps launch a festival balloon (like a sky lantern).
+*   **[[Aranith Eanobra|Ara]]** speaks with a family and learns the festival is an annual tradition to honor fire's importance to daily life.
+*   **[[Elowen Fernwyn|Fern]]** joins three performers dancing with flaming staffs around the bonfire. She makes a Performance check, dances well, and gains **advantage on Charisma checks** for the rest of the festival.
+*   **[[Kael Raval|Kael]]** checks on his companion, **[[Alice]]**. He buys her "stone soup," and she seems happy.
+
+### Mini-Game: The Fire Festival Championship
+**Location:** [[Low City]] Center, [[Fire Festival]].
+*   The party participates in the festival's main championship game: **"The Fire Game."**
+*   **Teams:** ([[Kael Raval|Kael]], [[Alice]], [[Elowen Fernwyn|Fern]]) vs. ([[Aranith Eanobra|Ara]], [[Freya Moondancer|Freya]], [[Meilavan]]) vs. Random Team.
+*   **Objective:** Be the first team to retrieve 8 pieces of charcoal from the central bonfire.
+*   **Outcome:** ([[Kael Raval|Kael]], [[Alice]], [[Elowen Fernwyn|Fern]]) win. Their prize is a [[Ring of Fire Resistance]].
+*   **Item Distribution:** The ring is given to [[Freya Moondancer]]. The ring also allows the wearer to cast *Hellish Rebuke* once per day.
+
+### Scene: To the Tavern - Fame and a Quest
+**Location:** [[Idagar]]'s Tavern, [[Low City]].
+*   The party goes to [[Idagar]]'s tavern. The centaur bartender, [[Idagar]], recognizes **[[Freya Moondancer|Freya]]** and **[[Elowen Fernwyn|Fern]]**.
+*   [[Idagar]] announces to the tavern that they are the **"Giant Killers"** who slew a [[Storm Giant]].
+*   He gives the party a round of drinks on the house. [[Freya Moondancer|Freya]] pays for a round for the entire tavern, earning the crowd's favor.
+*   A small, purple-scaled kobold named **[[Limo]]** approaches the party.
+*   **Quest Offered:** [[Limo]] explains his kobold village, **[[Bone-Choke]]**, is being terrorized by a **[[Hill Giant]]**. The village is **5 days' travel south** of [[Beshkarl]].
+*   He offers no upfront payment but promises the village will reward them.
+*   *The party debates taking the quest.*
+
+### Combat: Confrontation with Velastra
+**Location:** Outside [[Idagar]]'s Tavern, [[Low City]].
+**Participants:** [[Party 1]], [[Alice]], [[Meilavan]] vs. [[Velastra]] and her [[Griffon]].
+
+#### Round 1
+*   **Initiative Order:** Fern (20), Freya (17), Velastra (15), Kael (10), Alice (6), Ara (4), Griffon (4), Meilavan (1).
+*   **[[Elowen Fernwyn|Fern]]:** Hides.
+*   **[[Freya Moondancer|Freya]]:** Hides.
+*   **[[Velastra]]:** Approaches the tavern. She is a blue tiefling with golden eyes, horns, a blue cloak, and wields a metal staff with a large, rotating eye, the [[Eye of Yerkatraz]]. She looks directly at the tavern window where [[Aranith Eanobra|Ara]] is.
+*   **[[Kael Raval|Kael]]:** Observes [[Velastra]]. He discerns her intentions are hostile.
+*   **[[Alice]]:** Does nothing.
+*   **[[Aranith Eanobra|Ara]]:** (Stunned by *Power Word Stun* from a previous narrative beat). She does nothing.
+*   **[[Griffon]]:** Does nothing.
+
+#### Round 2
+*   **[[Elowen Fernwyn|Fern]]:** Attacks [[Velastra]] with a punch. Hits and uses her Open Hand Technique to knock [[Velastra]] back 10 feet.
+*   **[[Freya Moondancer|Freya]]:** Casts *Sleep* on the [[Griffon]]. The griffon falls unconscious.
+*   **[[Velastra]]:** Casts **Hypnotic Pattern** on the entire area.
+    *   **Saving Throw Results:** [[Aranith Eanobra|Ara]], [[Kael Raval|Kael]], and [[Alice]] fail and become charmed/incapacitated. [[Elowen Fernwyn|Fern]] and [[Freya Moondancer|Freya]] succeed.
+*   [[Velastra]] gives a speech: "I have had enough of you. You killed my wolf. You invaded my laboratory. You cut off my giant's hand. You invaded the Silencers. And you... stole my orb." She looks at [[Aranith Eanobra|Ara]].
+
+#### Round 3 & Theft of the Orb
+*   **[[Elowen Fernwyn|Fern]]:** Runs to [[Aranith Eanobra|Ara]] and tries to shake her free of the charm, failing.
+*   **[[Freya Moondancer|Freya]]:** Warns the others to flee using her *Message* ring.
+*   **[[Velastra]]:** Walks up to the incapacitated [[Aranith Eanobra|Ara]]. She casts **Power Word Stun** on [[Aranith Eanobra|Ara]]. As an object interaction, she searches [[Aranith Eanobra|Ara]] and finds the **[[Orb of Abjuration]]** in her pack. She takes it.
+
+#### Round 4 & Retrieval of the Orb
+*   **[[Elowen Fernwyn|Fern]]:** Continues trying to wake [[Aranith Eanobra|Ara]]. Fails.
+*   **[[Freya Moondancer|Freya]]:** Casts *Mage Hand* and uses it to try to snatch the orb from [[Velastra]]'s grip. She succeeds and the invisible *Mage Hand* takes the orb.
+*   **[[Velastra]]:** Is enraged. She uses her action to try to grab the orb from the air but fails. She uses her movement to mount her now-awake [[Griffon]].
+*   **[[Kael Raval|Kael]]:** (Breaks free from *Hypnotic Pattern* at the end of his turn?). He does nothing this round.
+
+#### Round 5 & Escape
+*   **[[Elowen Fernwyn|Fern]]:** Attacks [[Velastra]] as she mounts the griffon. Misses.
+*   **[[Freya Moondancer|Freya]]:** Directs her *Mage Hand* to bring the orb to [[Kael Raval|Kael]].
+*   **[[Velastra]]:** Seeing the orb is gone and out of reach, she shouts in anger. She and the [[Griffon]] take off, flying towards [[High City]].
+*   **[[Kael Raval|Kael]]:** Catches the orb delivered by *Mage Hand*.
+*   **[[Aranith Eanobra|Ara]]:** Makes her Constitution saving throw against *Power Word Stun* and recovers.
+*   **Combat Ends.** [[Velastra]] retreats. The *Hypnotic Pattern* ends, freeing everyone.
+
+### Aftermath: Debrief and Decisions
+**Location:** Streets of [[Low City]], after the attack.
+*   The [[Fire Festival]] ends abruptly as people flee.
+*   [[Idagar]] the centaur bartender comes out to check on the party.
+*   The party sees [[Velastra]] fly towards [[High City]].
+*   **Key Realization:** [[Aranith Eanobra|Ara]] notes that the eye on [[Velastra]]'s staff was pointed directly at her pack, meaning it can likely detect the orb.
+*   **Party Discussion:** They debate what to do with the **[[Orb of Abjuration]]**. They consider giving it to the [[Blood Order]] for safekeeping or hiding it themselves.
+*   **Decision:** The party decides to **keep the orb for now** and hide it. They will not leave it in an obvious place.
+*   The party decides to go to the [[Blood Order]] headquarters to rest for the night.
+
+---
+
+### NPCs Met This Session
+| Name | Description | Key Actions |
+| :--- | :--- | :--- |
+| **[[Duarte]]** | Dwarf blacksmith. | Bought the stolen Glaive from [[Kael Raval]] for 20 GP. |
+| **[[Idagar]]** | Centaur bartender. | Recognized the party as "Giant Killers," gave them free drinks, announced them to the tavern. |
+| **[[Limo]]** | Small, purple-scaled kobold. | Asked the party for help with a [[Hill Giant]] terrorizing his village, [[Bone-Choke]]. |
+| **[[Velastra]]** | Blue Tiefling witch, enemy. | Attacked the party, used *Hypnotic Pattern* and *Power Word Stun*, stole and then lost the [[Orb of Abjuration]], fled on her [[Griffon]]. |
+| **[[Griffon]]** | [[Velastra]]'s mount. | Knocked unconscious by [[Freya Moondancer|Freya]]'s *Sleep* spell, later fled with [[Velastra]]. |
+
+### Locations Visited
+| Name | Type | What Happened |
+| :--- | :--- | :--- |
+| **[[Low City]] Center** | Festival grounds | Site of the [[Fire Festival]]. Party participated in games, contests, and was attacked by [[Velastra]]. |
+| **[[Idagar]]'s Tavern** | Tavern | Party was celebrated, met [[Limo]], and were confronted by [[Velastra]] outside. |
+
+### Items & Clues
+| Item/Clue                   | Description                                   | Importance                                                                               |
+| :-------------------------- | :-------------------------------------------- | :--------------------------------------------------------------------------------------- |
+| **[[Orb of Abjuration]]**   | Magic orb, now attuned to [[Aranith Eanobra]] | Grants +3 AC and a blue aura to the attuned bearer. Stolen and retrieved during combat.  |
+| **Freya's Book Curse**      | Magical tattoo on left eye from the war book. | Causes Disadvantage on reading/deciphering checks. Can be removed with *Remove Curse*.   |
+| **Hill Giant Quest**        | Request from kobold [[Limo]].                 | To kill a [[Hill Giant]] in [[Bone-Choke]], 5 days south. Potential side quest.          |
+| **Ring of Fire Resistance** | Prize from festival game.                     | Worn by [[Aranith Eanobra]] Grants resistance to fire damage and 1/day *Hellish Rebuke*. |
+
+### Ongoing Threads
+| Thread                        | What Happened Today                                                                                                           | Open Questions                                                     |
+| :---------------------------- | :---------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------- |
+| **[[Velastra]]' Threat**      | She confronted the party, stated her grievances, and was driven off.                                                          | What is her ultimate goal? Where in [[High City]] did she go?      |
+| **The [[Orb of Abjuration]]** | Successfully retrieved from [[Velastra]]. The party now holds it.                                                             | Where is the correct altar? What happens when all orbs are placed? |
+| **Personal Quests**           | Discussed but not advanced ([[Aranith Eanobra]]'s brother, [[Kael Raval]]'s father, [[Freya Moondancer]]'s friend [[Etrug]]). | Which quest will the party prioritize?                             |
+| **Kobold Quest**              | Received a quest to kill a [[Hill Giant]] in [[Bone-Choke]].                                                                  | Will the party accept this dangerous job for uncertain reward?     |
+
+========================================
+
+# Session 13
+
+
+
+========================================
+
+# Session 14
 
 ## questoes da freya
 
 Eu quero saber mais sobre o Loupi. O que pensam as pessoas dele?
-
-Quero mostrar ao Thorkell o transcript da reunião (O kael roubou do quarto do rei) e ouvir a opinão dele.
 
 Quem é que criou as paredes de gelo? Que reino?
 - magos humanos da guerra
@@ -951,43 +1112,10 @@ minus the cost of retrieving it from section E (**800gp**)
 raw profit for the mines: **2200gp**
 **20%** cut to Freya: **440gp**
 
-### [[Fire Festival]]
+### Ovos de aranha do [[Kael Raval]]
 
-[Drunken Trait Table](https://www.dndbeyond.com/forums/dungeons-dragons-discussion/homebrew-house-rules/90033-drunken-trait-table)
+### Meilavan
 
-### Taverna
-
-o [[Idagar]] ouviu falar do feito da Freya
-as pessoas andam a falar de Freya, a matadora de gigantes
-ele anuncia a lendária freya ao resto da taverna
-
-um kobold, [[Limo]], diz à freya que a sua aldeia de kobolds, [[Bone-Choke]], é aterrorizada por um [hill giant](https://5e.tools/bestiary.html#hill%20giant_xmm)
-[[Bone-Choke]] é 200km a sul the [[Beshkarl]] (5 dias de viagem)
-
-### Velastra
-
-Sabe onde está a Ara desde que ela fez attune com a [[Orb of Abjuration]]
-Ela aparece com um [Griffon](https://5e.tools/bestiary.html#griffon_xmm)
-
-O [[Eye of Yerkatraz]] está a olhar diretamente para a Ara.
-
-Ela usa [Hypnotic Pattern](https://5e.tools/spells.html#hypnotic%20pattern_xphb) para dar charm a toda a gente, e [Power Word Stun](https://5e.tools/spells.html#power%20word%20stun_xphb) na [[Aranith Eanobra]] para lhe tirar a [[Orb of Abjuration]]
-
-está farta da party por causa de:
-- mataram o lobo dela
-- invadem o laboratorio
-- cortaram a mão do gigante dela
-- invadiram os silencers
-- roubaram a [[Orb of Abjuration]]
-
-Ela usa [Fireball](https://5e.tools/spells.html#fireball_xphb) (4d6) na party enquanto voa embora
-
-A [[Meilavan]] ataca a party, controlada pela [[Velastra]].
-
-========================================
-
-# C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/Finvora/Sessions\Session 13
-
-Ovos de aranha do [[Kael Raval]]
+A [[Meilavan]] ataca a party de manhã, controlada pela [[Velastra]].
 
 ========================================

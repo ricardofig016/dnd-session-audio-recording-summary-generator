@@ -23,7 +23,7 @@ def get_markdown_file_paths():
 
 
 def get_text_from_file(file):
-    title = file.replace(".md", "")
+    title = os.path.splitext(os.path.basename(file))[0]
     content = f"# {title}\n\n"
     with open(file, "r", encoding="utf-8") as file:
         content += file.read()
