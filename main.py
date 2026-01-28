@@ -19,9 +19,7 @@ def get_markdown_file_paths(notes_directory):
         if file.lower().startswith("session") and file.endswith(".md"):
             session_number = get_session_number(file)
             files[session_number] = file
-    file_paths = [
-        os.path.join(notes_directory, files[key]) for key in sorted(files.keys())
-    ]
+    file_paths = [os.path.join(notes_directory, files[key]) for key in sorted(files.keys())]
     return file_paths
 
 
@@ -38,7 +36,7 @@ load_dotenv()
 
 CURRENT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
-SESSION_NUMBER = "12"
+SESSION_NUMBER = "14"
 FILE_FORMAT = "m4a"
 AUDIO_FILE = f"C:/Users/LENOVO/Desktop/dnd/worlds/Finvora/assets/session {SESSION_NUMBER} audio.{FILE_FORMAT}"
 
@@ -61,22 +59,14 @@ if not DEEPSEEK_API_KEY:
 BASE_DEEPSEEK_API_URL = "https://api.deepseek.com"
 DEEPSEEK_CLIENT = OpenAI(api_key=DEEPSEEK_API_KEY, base_url=BASE_DEEPSEEK_API_URL)
 
-with open(
-    os.path.join(CURRENT_DIRECTORY, "prompts/transcription.txt"), "r", encoding="utf-8"
-) as file:
+with open(os.path.join(CURRENT_DIRECTORY, "prompts/transcription.txt"), "r", encoding="utf-8") as file:
     TRANSCRIPTION_PROMPT = file.read()
-with open(
-    os.path.join(CURRENT_DIRECTORY, "prompts/summary.txt"), "r", encoding="utf-8"
-) as file:
+with open(os.path.join(CURRENT_DIRECTORY, "prompts/summary.txt"), "r", encoding="utf-8") as file:
     SUMMARY_PROMPT = file.read()
-with open(
-    os.path.join(CURRENT_DIRECTORY, "prompts/markdown.txt"), "r", encoding="utf-8"
-) as file:
+with open(os.path.join(CURRENT_DIRECTORY, "prompts/markdown.txt"), "r", encoding="utf-8") as file:
     MARKDOWN_PROMPT = file.read()
 
-SESSION_DIRECTORY = os.path.join(
-    CURRENT_DIRECTORY, f"sessions/session_{SESSION_NUMBER}"
-)
+SESSION_DIRECTORY = os.path.join(CURRENT_DIRECTORY, f"sessions/session_{SESSION_NUMBER}")
 
 TRANSCRIPT_FILE_NAME = "transcript.txt"
 SUMMARY_FILE_NAME = "summary.txt"
