@@ -1,8 +1,8 @@
-# D&D Session Audio Recording & Summary Generator
+# D&D Session Summary Generator from Audio Recordings
 
-Automatically transcribes and summarizes D&D session audio using OpenAI's Whisper API and DeepSeek for intelligent summarization with Obsidian wikilinks.
+Automatically transcribes and summarizes D&D session audio recordings using OpenAI's Whisper API and DeepSeek for intelligent summarization with Obsidian wikilinks.
 
-- [D\&D Session Audio Recording \& Summary Generator](#dd-session-audio-recording--summary-generator)
+- [D\&D Session Summary Generator from Audio Recordings](#dd-session-summary-generator-from-audio-recordings)
   - [Quick Setup](#quick-setup)
   - [Features](#features)
   - [Project Structure](#project-structure)
