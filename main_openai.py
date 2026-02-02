@@ -3,6 +3,7 @@ import sys
 import time
 from dotenv import load_dotenv
 from openai import OpenAI
+from pydub import AudioSegment
 
 
 def get_session_number(file):
@@ -68,6 +69,59 @@ MARKDOWN_SUMMARY_FILE_NAME = "summary.md"
 SESSION_DIRECTORY = ""  # Will be set based on audio file path
 ALL_SESSION_NOTES = ""  # Will be loaded from session notes directory
 
+# OpenAI API limits
+OPENAI_MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB in bytes
+CHUNK_BITRATE = "48k"  # MP3 bitrate for audio chunks
+
+
+# Split audio file into chunks if it exceeds the size limit
+def split_audio_into_chunks(audio_file):
+    """Split audio files into chunks under 25MB."""
+    file_size = os.path.getsize(audio_file)
+
+    print(f"Audio file size ({file_size / (1024*1024):.2f} MB). Processing into chunks...")
+
+    # Load audio file
+    audio = AudioSegment.from_file(audio_file)
+    audio_duration = len(audio)  # Duration in milliseconds
+
+    # Create chunks directory
+    chunks_dir = os.path.join(SESSION_DIRECTORY, "chunks")
+    os.makedirs(chunks_dir, exist_ok=True)
+
+    # Export a test chunk to estimate final compressed size
+    print("Calculating optimal chunk count based on compressed size...")
+    test_chunk = audio[:60000]  # First 60 seconds
+    test_file = os.path.join(chunks_dir, "test_chunk.mp3")
+    test_chunk.export(test_file, format="mp3", bitrate=CHUNK_BITRATE)
+    test_size = os.path.getsize(test_file)
+    os.remove(test_file)
+
+    # Estimate full audio size after compression
+    estimated_full_size = (test_size / 60000) * audio_duration
+
+    # Calculate number of chunks needed (with safety margin)
+    num_chunks = int((estimated_full_size / OPENAI_MAX_FILE_SIZE) * 1.2) + 1
+    chunk_duration = audio_duration // num_chunks
+
+    print(f"Splitting into {num_chunks} chunks...")
+
+    # Split and save chunks
+    chunk_files = []
+    for i in range(num_chunks):
+        start_time = i * chunk_duration
+        end_time = (i + 1) * chunk_duration if i < num_chunks - 1 else audio_duration
+
+        chunk = audio[start_time:end_time]
+        chunk_file = os.path.join(chunks_dir, f"chunk_{i+1}.mp3")
+        chunk.export(chunk_file, format="mp3", bitrate=CHUNK_BITRATE)
+        chunk_files.append(chunk_file)
+
+        chunk_size = os.path.getsize(chunk_file)
+        print(f"  Chunk {i+1}/{num_chunks}: {chunk_size / (1024*1024):.2f} MB")
+
+    return chunk_files
+
 
 # Transcribe audio using OpenAI API
 def transcribe_audio(audio_file):
@@ -76,28 +130,52 @@ def transcribe_audio(audio_file):
     if not os.path.exists(audio_file):
         raise FileNotFoundError(f"Audio file not found: {audio_file}")
 
-    # Open audio file in binary mode
-    with open(audio_file, "rb") as file:
-        start_time = time.time()
-        response = OPENAI_CLIENT.audio.transcriptions.create(
-            model=OPENAI_TRANSCRIPTION_MODEL,
-            file=file,
-            prompt=TRANSCRIPTION_PROMPT,
-            language="pt",  # Portuguese as primary language
-            response_format="text",
-            temperature=0,  # Deterministic output
-        )
-        end_time = time.time()
+    # Split audio if needed
+    chunk_files = split_audio_into_chunks(audio_file)
 
-    transcript_text = response
-    print(f"Transcription completed in {end_time - start_time:.2f} seconds.")
+    # Transcribe each chunk
+    all_transcripts = []
+    for i, chunk_file in enumerate(chunk_files, 1):
+        print(f"Transcribing chunk {i}/{len(chunk_files)}...")
+
+        with open(chunk_file, "rb") as file:
+            start_time = time.time()
+            response = OPENAI_CLIENT.audio.transcriptions.create(
+                model=OPENAI_TRANSCRIPTION_MODEL,
+                file=file,
+                prompt=TRANSCRIPTION_PROMPT,
+                language="pt",  # Portuguese as primary language
+                response_format="text",
+                temperature=0,  # Deterministic output
+            )
+            end_time = time.time()
+
+        transcript_text = response
+        all_transcripts.append(transcript_text)
+        print(f"Chunk {i} transcription completed in {end_time - start_time:.2f} seconds.")
+
+    # Combine all transcripts
+    combined_transcript = "\n\n".join(all_transcripts)
+    print(f"All transcriptions completed. Total chunks: {len(chunk_files)}")
 
     os.makedirs(SESSION_DIRECTORY, exist_ok=True)
+
+    # Save individual chunk transcripts if multiple chunks
+    if len(chunk_files) > 1:
+        segments_path = os.path.join(SESSION_DIRECTORY, "transcript_segments.txt")
+        with open(segments_path, "w", encoding="utf-8") as file:
+            for i, transcript in enumerate(all_transcripts, 1):
+                file.write(f"=== Chunk {i} ===\n\n")
+                file.write(transcript)
+                file.write("\n\n")
+        print(f"Individual chunk transcripts saved to {segments_path}")
+
+    # Save combined transcript
     transcript_path = os.path.join(SESSION_DIRECTORY, TRANSCRIPT_FILE_NAME)
     with open(transcript_path, "w", encoding="utf-8") as file:
-        file.write(transcript_text)
+        file.write(combined_transcript)
 
-    return transcript_text
+    return combined_transcript
 
 
 # Summarize the transcript

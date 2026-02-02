@@ -11,6 +11,7 @@ Automatically transcribes and summarizes D&D session audio recordings using Open
   - [Utilities](#utilities)
   - [Advanced](#advanced)
   - [Requirements](#requirements)
+  - [Troubleshooting](#troubleshooting)
   - [License](#license)
   - [Author](#author)
 
@@ -19,8 +20,10 @@ Automatically transcribes and summarizes D&D session audio recordings using Open
 **1. Install dependencies:**
 
 ```powershell
-pip install python-dotenv openai
+pip install python-dotenv openai pydub
 ```
+
+\*Note: `pydub` requires ffmpeg. Install via: `choco install ffmpeg` (Windows)
 
 **2. Create `.env` file:**
 
@@ -40,9 +43,10 @@ Output: `sessions/audio_name/{transcript.txt, summary.txt, summary.md}`
 ## Features
 
 - **Automatic Transcription** - OpenAI Whisper (cached)
+- **Large File Handling** - Auto-splits files into MP3 chunks for API compliance
 - **AI Summarization** - DeepSeek with campaign context
 - **Wikilinks** - Obsidian-style markdown
-- **Session Context** - Maintains narrative continuity
+- **Session Context** - Maintains narrative continuity across all prior sessions
 - **Audio Formats** - m4a, mp3, wav, etc.
 
 ---
@@ -58,26 +62,47 @@ Output: `sessions/audio_name/{transcript.txt, summary.txt, summary.md}`
 │   └── markdown.txt         # Wikilink formatting
 ├── sessions/                # Session outputs
 │   └── session_name/
-│       ├── transcript.txt
+│       ├── transcript.txt           # Final combined transcript
+│       ├── transcript_segments.txt  # Individual chunk transcripts (if multi-chunk)
 │       ├── summary.txt
-│       └── summary.md
-└── combined_sessions.md     # All sessions aggregated
+│       ├── summary.md
+│       └── chunks/                  # Temporary MP3 chunks
+├── combined_sessions.md     # All sessions aggregated (git-ignored)
+├── custom_prompt.py         # Query specific sessions interactively
+├── campaign_summary.py      # Generate campaign overview
+├── join_text.py             # Rebuild combined_sessions.md
+└── split_audio.py           # Standalone audio splitting utility
 ```
 
 ## Configuration
 
-**Optional:** Edit `main_openai.py` to:
+**Audio Chunking** (edit `main_openai.py` globals):
 
-- Change transcription model: `OPENAI_TRANSCRIPTION_MODEL = "gpt-4o-transcribe"` (higher quality)
-- Adjust session notes directory: `SESSION_NOTES_DIRECTORY = "..."`
+- `CHUNK_BITRATE = "64k"` - MP3 bitrate for audio chunks (minimum quality for voice transcription, reduce for faster processing)
+- `OPENAI_MAX_FILE_SIZE = 25 * 1024 * 1024` - OpenAI API size limit (do not modify)
 
-Customize prompts in `prompts/` folder to adjust style, detail level, or wikilink aggressiveness.
+**Transcription** (edit `main_openai.py` globals):
+
+- `OPENAI_TRANSCRIPTION_MODEL = "whisper-1"` - Change to `"gpt-4o-transcribe"` for higher quality
+- `SESSION_NOTES_DIRECTORY = "..."` - Path to external session notes (used for campaign context)
+
+**Summarization** (edit `prompts/` files):
+
+- `prompts/summary.txt` - Rules for comprehensive event recording (chronological, structured)
+- `prompts/markdown.txt` - Rules for Obsidian wikilink formatting
+- `prompts/transcription.txt` - Context about character names, terminology, language
 
 ## Workflow
 
-1. **Transcription** (cached) → `transcript.txt`
-2. **Summarization** (with prior sessions) → `summary.txt`
-3. **Markdown Formatting** (with wikilinks) → `summary.md`
+1. **Audio Chunking** - File is automatically split into MP3 chunks if >25MB
+   - Test chunk compressed to estimate full size
+   - Chunks stored in `sessions/{name}/chunks/`
+   - Always splits (even single chunk) for consistency
+2. **Transcription** (cached) - OpenAI Whisper transcribes each chunk
+   - Individual transcripts saved to `transcript_segments.txt`
+   - Combined into `transcript.txt`
+3. **Summarization** (with all prior session context) → `summary.txt`
+4. **Markdown Formatting** (with Obsidian wikilinks) → `summary.md`
 
 Each summary includes all previous sessions for narrative continuity.
 
@@ -93,16 +118,47 @@ Each summary includes all previous sessions for narrative continuity.
 
 **Iterate without re-transcribing:**
 
-1. Edit `prompts/summary.txt`
-2. Delete `summary.txt` and `summary.md`
-3. Re-run (only summarization stages)
+1. Edit `prompts/summary.txt` or `prompts/markdown.txt`
+2. Delete `sessions/{name}/summary.txt` and `summary.md` (keep `transcript.txt`)
+3. Re-run - only summarization and formatting stages execute
+
+**Regenerate campaign context:**
+
+```powershell
+python join_text.py  # Rebuilds combined_sessions.md from SESSION_NOTES_DIRECTORY
+```
+
+**Query specific session interactively:**
+
+```powershell
+python custom_prompt.py  # Enter session number + custom question
+```
 
 ## Requirements
 
 - Python 3.8+
 - Internet connection
-- OpenAI account with credits
-- DeepSeek account with credits
+- ffmpeg (for audio processing)
+- OpenAI account with API credits (transcription)
+- DeepSeek account with API credits (summarization)
+
+## Troubleshooting
+
+**Audio file exceeds size limit:**
+
+- Automatic chunking handles this; ensure ffmpeg is installed
+- Reduce `CHUNK_BITRATE` from `"64k"` to `"32k"` if chunks still exceed 25MB
+
+**Transcription is slow:**
+
+- Reduce `CHUNK_BITRATE` for faster compression (quality trade-off)
+- Use `"gpt-4o-mini-transcribe"` model for faster processing
+
+**Missing session context in summaries:**
+
+- Verify `SESSION_NOTES_DIRECTORY` is correctly set
+- Ensure session markdown files follow naming: `session X.md`
+- Run `python join_text.py` to regenerate `combined_sessions.md`
 
 ## License
 

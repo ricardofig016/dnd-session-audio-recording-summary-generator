@@ -2,97 +2,111 @@
 
 ## Project Overview
 
-This is a D&D session audio recording pipeline that automates transcription and summarization of tabletop gaming sessions. The system converts raw audio files into comprehensive markdown summaries using either local Whisper or OpenAI API for transcription, then DeepSeek API for LLM-powered summarization and formatting.
+This is a D&D session audio recording pipeline that automates transcription and summarization of tabletop gaming sessions. The system converts raw audio files into comprehensive markdown summaries using OpenAI Whisper API for transcription, then DeepSeek API for LLM-powered summarization and formatting.
 
 ## Architecture & Data Flow
 
 ### Two Transcription Modes
 
-**`main.py`** - Local Whisper transcription (requires GPU/CPU resources)
+**`main_openai.py`** - OpenAI API transcription (recommended, production-ready)
 
-- Uses `whisper.load_model()` with local model (`"turbo"` or `"small"`)
-- Fixed session number: hardcoded `SESSION_NUMBER = "14"`
-- Requires: `whisper` package, local compute power
-- Best for: batch processing without API costs
-
-**`main_openai.py`** - OpenAI API transcription (cloud-based, recommended for production)
-
-- Accepts audio file path as **command-line argument**: `python main_openai.py /path/to/audio.m4a`
-- Extracts session folder name from filename (no extension): `test.m4a` → `sessions/test/`
-- Flexible naming: accepts any audio file format (m4a, mp3, wav, etc.)
-- Models available: `"whisper-1"` (default), `"gpt-4o-transcribe"` (higher quality), `"gpt-4o-mini-transcribe"`
+- **Usage**: `python main_openai.py /path/to/audio.{m4a|mp3|wav}`
+- Accepts audio file path as **command-line argument**
+- Extracts session folder name from filename (no extension): `session17.m4a` → `sessions/session17/`
+- Flexible naming: accepts any audio file format
+- **Critical feature**: Automatically handles large files by splitting into MP3 chunks (max 25MB each)
+  - Always splits, even single chunk for consistency
+  - Uses `CHUNK_BITRATE = "64k"` (configurable, minimum quality for voice)
+  - Chunks stored in `sessions/{name}/chunks/`
+  - Individual chunk transcripts saved to `transcript_segments.txt`
+  - All transcripts combined into `transcript.txt`
 - Requires: `OPENAI_API_KEY` in `.env`
+- Transcription models: `"whisper-1"` (default), `"gpt-4o-transcribe"` (higher quality)
 
-### Pipeline Stages (Both Versions)
+**`main.py`** - Local Whisper transcription
 
-1. **Audio Transcription** → Raw text transcript (cached in `sessions/{name}/transcript.txt`)
-2. **Summary Generation** → DeepSeek creates chronological summary with full session context
-3. **Markdown Formatting** → DeepSeek applies markdown with Obsidian wikilinks (`[[Name]]`)
+- Uses `whisper.load_model()` with local model
+- Fixed session number: hardcoded `SESSION_NUMBER = "14"`
+- No API costs but requires GPU/CPU resources
+- Best for: batch processing without external API calls
 
-**Caching**: If transcript exists, transcription is skipped (promotes iterating on summarization).
+### Pipeline Stages (All Versions)
+
+```
+Audio File (any format)
+    ↓
+[Split into MP3 chunks if needed]
+    ↓
+Transcribe each chunk via OpenAI/Local Whisper
+    ↓
+Combine transcripts → transcript.txt
+    ↓
+Summarize with DeepSeek (includes ALL prior session context)
+    ↓
+Generate Markdown with wikilinks via DeepSeek
+    ↓
+Output: summary.txt, summary.md
+```
+
+**Key caching pattern**: If `transcript.txt` exists, transcription is skipped. This enables fast iteration on summarization prompts.
 
 ### Data Organization
 
-- **Sessions Directory**: `sessions/{session_name}/` contains:
-  - `transcript.txt` → Raw transcription output
-  - `summary.txt` → Unformatted comprehensive summary
-  - `summary.md` → Formatted summary with wikilinks
-- **Combined Sessions**: `combined_sessions.md` → Aggregated markdown from all previous sessions (used as LLM context, git-ignored)
-- **Prompts Directory**: `prompts/` → Templates controlling LLM style:
-  - `transcription.txt` → Context for transcription (game info, character names, language notes)
-  - `summary.txt` → Rules for comprehensive event recording
-  - `markdown.txt` → Rules for wikilink formatting and structure
+- **Sessions Directory**: `sessions/{session_name}/`
+  - `transcript.txt` - Combined transcription from all chunks
+  - `transcript_segments.txt` - Individual chunk transcriptions (if multi-chunk)
+  - `chunks/` - Temporary MP3 chunks and compression test file
+  - `summary.txt` - Unformatted comprehensive summary
+  - `summary.md` - Formatted summary with wikilinks
+- **Campaign Context**: `combined_sessions.md` → Aggregated markdown from all sessions (git-ignored, used as LLM context)
+- **Prompts Directory**: `prompts/` → Templates controlling LLM style
+  - `transcription.txt` - Context for transcription (game info, character names)
+  - `summary.txt` - Rules for comprehensive event recording (chronological, structured)
+  - `markdown.txt` - Rules for wikilink formatting and structure
 
 ### Supporting Scripts
 
-- `campaign_summary.py`: Generates high-level campaign overview
-- `custom_prompt.py`: Arbitrary queries on session transcripts
-- `join_text.py`: Regenerates `combined_sessions.md` from all session markdown files
-- `join_audios.py`, `split_audio.py`: Audio utilities
+- **`custom_prompt.py`**: Arbitrary queries on specific session transcripts (interactive)
+- **`campaign_summary.py`**: Generates high-level campaign overview
+- **`join_text.py`**: Rebuilds `combined_sessions.md` from session markdown files
+- **`join_audios.py`**, **`split_audio.py`**: Audio utilities
 
 ## Key Implementation Patterns
 
-### Session Context Pattern (Critical for Consistency)
-
-All LLM requests include **full context from all previous sessions** to maintain narrative continuity:
+### Audio File Splitting (Critical for Large Files)
 
 ```python
-content = f"{PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n{ALL_SESSION_NOTES}\n\nHere is the session transcript to summarize:\n{text}"
+# ALL audio files go through split_audio_into_chunks():
+chunk_files = split_audio_into_chunks(audio_file)  # Returns list of MP3 files
+
+# Algorithm:
+# 1. Load audio, create test chunk (60 seconds)
+# 2. Export test as MP3 with CHUNK_BITRATE → measure actual compressed size
+# 3. Estimate full audio size: (test_size / 60000ms) * audio_duration
+# 4. Calculate chunks needed: ceil(estimated_size / 25MB) * 1.2 (safety margin)
+# 5. Split and export all chunks as MP3 with CHUNK_BITRATE
 ```
 
-This is essential: the LLM needs character arcs, faction relationships, and story progression from prior sessions.
+**Key variables**:
 
-### Configuration & API Setup
+- `OPENAI_MAX_FILE_SIZE = 25 * 1024 * 1024` (API limit)
+- `CHUNK_BITRATE = "64k"` (adjust here for quality/size tradeoff)
 
-**Environment Variables** (`.env`):
+### Session Context Pattern (Critical for Narrative Continuity)
 
-- `OPENAI_API_KEY` - Required for `main_openai.py`
-- `DEEPSEEK_API_KEY` - Required for summarization (both scripts)
-
-**API Clients**:
+ALL LLM requests include **full context from all previous sessions** to maintain story arcs:
 
 ```python
-# OpenAI (transcription only)
-OPENAI_CLIENT = OpenAI(api_key=OPENAI_API_KEY)
+# Pattern used in summarize_text(), generate_markdown_summary():
+content = f"{PROMPT}\n\nFor context, here are notes from all previous sessions:\n{ALL_SESSION_NOTES}\n\nHere is the session transcript:\n{text}"
 
-# DeepSeek (summarization) - uses OpenAI SDK with custom base_url
-DEEPSEEK_CLIENT = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
-response = DEEPSEEK_CLIENT.chat.completions.create(model="deepseek-reasoner", ...)
-```
-
-### OpenAI Transcription Specifics (`main_openai.py`)
-
-```python
-response = OPENAI_CLIENT.audio.transcriptions.create(
-    model="whisper-1",          # or "gpt-4o-transcribe" for higher quality
-    file=audio_file,            # Binary file object (not path)
-    prompt=TRANSCRIPTION_PROMPT,  # Context about characters/terminology
-    language="pt",              # Portuguese (primary language code)
-    response_format="text",     # Plain text output
-    temperature=0,              # Deterministic transcription
+response = DEEPSEEK_CLIENT.chat.completions.create(
+    model="deepseek-reasoner",  # Always use this model for extended reasoning
+    messages=[{"role": "user", "content": content}],
 )
-transcript_text = response  # Direct string, not response.text
 ```
+
+This is essential: the LLM needs character arcs, relationships, and story progression from prior sessions for consistency.
 
 ### File Path Conventions
 
@@ -101,52 +115,86 @@ transcript_text = response  # Direct string, not response.text
 - Prompts: `os.path.join(CURRENT_DIRECTORY, "prompts/{filename}.txt")`
 - SESSION_NOTES_DIRECTORY: External path (locally configured) for campaign context
 
-### Prompt Template Patterns
+### Configuration & API Setup
 
-**Summary Prompt Requirements**:
+**Environment Variables** (`.env`):
 
-- Chronological recording of all events (major and minor)
+```
+OPENAI_API_KEY=sk-...
+DEEPSEEK_API_KEY=sk-...
+```
+
+**API Clients**:
+
+```python
+# OpenAI (transcription)
+OPENAI_CLIENT = OpenAI(api_key=OPENAI_API_KEY)
+
+# DeepSeek (summarization) - uses OpenAI SDK with custom base_url
+DEEPSEEK_CLIENT = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
+```
+
+### Prompt Template Structure
+
+All prompts are highly structured with specific sections:
+
+**Summary Prompt** (`prompts/summary.txt`):
+
+- Record ALL events (major and minor), not just highlights
 - Per-NPC tracking: name, description, actions
-- Obsidian wikilinks for locations, NPCs, factions, items
-- Distinction: actual actions ≠ player speculation ≠ OOC banter
-- Structured output with section tags (`### Scene:`, `### Combat:`, `### Puzzle:`)
-- Present tense for event descriptions
-- Mark unintelligible audio; only infer when reasonable
+- Distinguish: actual actions ≠ player speculation ≠ OOC banter
+- Present tense for events, chronological structure
+- Structured output with section tags: `### Scene:`, `### Combat:`, `### Puzzle:`, etc.
+- Tables for NPCs, locations, ongoing threads
+- Mark unintelligible audio explicitly; only infer when reasonable
 
-**Game Context**:
+**Markdown Prompt** (`prompts/markdown.txt`):
 
-- Main characters with full names, nicknames, classes
-- Companion NPCs and key factions
-- Important locations and D&D 5e mechanics terminology
-- Language note: Portuguese primary, transcribe as-is
-- Expected: roleplay + mechanics discussion + code-switching
+- Applies Obsidian wikilinks: `[[Character Name]]`, `[[Location]]`, `[[Faction]]`
+- Maintains section structure and chronological order
+- Formats for readability
+- Preserves all content from summary
+
+### OpenAI Transcription Details
+
+```python
+response = OPENAI_CLIENT.audio.transcriptions.create(
+    model="whisper-1",                # Change to "gpt-4o-transcribe" for higher quality
+    file=audio_file,                  # Open file object in binary mode
+    prompt=TRANSCRIPTION_PROMPT,      # Context about characters/terminology
+    language="pt",                    # Portuguese (configure per campaign)
+    response_format="text",           # Plain text output
+    temperature=0,                    # Deterministic transcription
+)
+transcript_text = response  # Direct string, not response.text
+```
 
 ## Common Development Tasks
 
-### Running Full Pipeline
-
-**OpenAI Transcription (Recommended)**:
+### Running Full Pipeline (Recommended)
 
 ```powershell
 # Ensure .env has OPENAI_API_KEY and DEEPSEEK_API_KEY
 python main_openai.py "C:/path/to/my_session.m4a"
-# Creates: sessions/my_session/{transcript.txt, summary.txt, summary.md}
+# Outputs to: sessions/my_session/{transcript.txt, summary.txt, summary.md}
 ```
 
-**Local Whisper**:
+### Iterate on Summarization (Without Re-transcribing)
 
 ```powershell
-# Edit SESSION_NUMBER and AUDIO_FILE in main.py
-python main.py
+# 1. Edit prompts/summary.txt or prompts/markdown.txt
+# 2. Delete sessions/{name}/summary.txt and summary.md (keep transcript.txt)
+# 3. Re-run script - only summarization stages execute
+python main_openai.py "C:/path/to/my_session.m4a"
 ```
 
 ### Regenerate Campaign Context
 
 ```powershell
-python join_text.py  # Rebuilds combined_sessions.md from all session markdown files
+python join_text.py  # Rebuilds combined_sessions.md from SESSION_NOTES_DIRECTORY
 ```
 
-### Custom Analysis
+### Query Specific Session
 
 ```powershell
 python custom_prompt.py  # Interactive: session number + your question
@@ -157,12 +205,22 @@ python custom_prompt.py  # Interactive: session number + your question
 - Missing API keys: Raise `ValueError` with key name
 - File not found: Raise `FileNotFoundError` with expected path
 - Empty files: Raise `ValueError` with context
-- API timeouts: Report duration in seconds
-- Requests to DeepSeek always use model `"deepseek-reasoner"` (enables extended reasoning)
+- Transcription failures: Report duration and file size
+- DeepSeek API timeouts: Retry or increase timeout
+- Audio splitting failures: Check ffmpeg availability (pydub dependency)
 
 ## Performance & Optimization
 
-- OpenAI transcription: ~30 seconds to 2 minutes depending on audio length
-- DeepSeek summarization: Varies by token count; times reported in output
-- Session context grows with each session (increases token count for future requests)
-- Cached transcripts: Re-running script only does summarization (much faster iteration)
+- **OpenAI transcription**: 30 seconds to 2 minutes depending on audio length and chunk count
+- **DeepSeek summarization**: 2-5 minutes depending on transcript size (uses extended reasoning)
+- **Session context growth**: Combined session context increases with each new session (token count grows)
+- **Iteration workflow**: Delete summary files only (keep transcripts) for fast re-summarization
+- **Audio compression**: 64k bitrate MP3 reduces file size ~5x vs WAV while maintaining voice clarity
+
+## Common Pitfalls for AI Agents
+
+1. **Don't skip audio splitting**: Even small files go through splitting for consistency
+2. **Always include session context**: LLM requests without ALL prior sessions lose narrative continuity
+3. **Use "deepseek-reasoner" model**: Other DeepSeek models won't work; this model enables extended thinking
+4. **Respect prompt structure**: Changing prompts requires understanding the specific formatting rules (tags, sections, tables)
+5. **File path consistency**: Always use forward slashes; SESSION_NOTES_DIRECTORY is user-specific external path
