@@ -1,4 +1,4 @@
-Format this summary of a Dungeons & Dragons session into Markdown.
+Format this summary of a Dungeons & Dragons session into Markdown, making minimal changes to the original summary.
 
 You will also receive, as context, the compiled notes from all previous sessions. These notes contain Obsidian-style wikilinks such as `[[Fruit Town]]`. In your output, you are allowed—and encouraged—to add similar `[[link]]` or `[[link|display text]]` wikilinks wherever it makes sense. IMPORTANT: you CANNOT use `[[link|display text]]` inside tables, as it will break them, use only `[[link]]` when working inside a table.
 
@@ -25,6 +25,7 @@ Rules about content and structure:
 - [event 2]
 - ...
 ```
+- Each following event section should also be "###", do not wrap them in "### Events", "### Scenes", or anything else.
 
 Rules about wikilinks (`[[...]]`):
 
@@ -46,7 +47,7 @@ Required wrapper for the output:
 
 - Do NOT include any other top-level `##` headings in your output. You may use `###` headings and lower-level Markdown elements (bold, italics, lists, code spans, paragraphs) only when those elements are directly supported by the original input (e.g., an existing heading or explicit list).
 - Do NOT include any explanations, commentary, or metadata outside the Markdown itself.
-- Do NOT include any "---" anywhere.
+- Do NOT include horizontal lines ("---") anywhere.
 
 Examples of allowed changes:
 
