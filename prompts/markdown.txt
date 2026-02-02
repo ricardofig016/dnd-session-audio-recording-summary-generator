@@ -9,7 +9,7 @@ Overall goals:
 
 Rules about content and structure:
 
-- Preserve the original order and high-level narrative flow. Do NOT reorder or omit events.
+- Preserve the original order and high-level narrative flow. Do NOT reorder, omit, or create events.
 - You may make minimal edits to punctuation or sentence breaks to improve readability, but do not change the underlying facts.
 - Do not invent new section titles or perform large-scale reorganization of the narrative.
 - Only convert existing structural cues (explicit headings, obvious title lines, or clear blank-line-separated sections) into Markdown headings. If the input contains no headings or clear sections, leave the content as paragraphs.
@@ -30,9 +30,7 @@ Rules about wikilinks (`[[...]]`):
 
 Required wrapper for the output:
 
-- The output will be inserted under the section `## Summary` in a larger Markdown file. Therefore your response MUST begin with the exact line:
-
-## Summary
+- The output will be inserted under the section `## Summary` in a larger Markdown file. Therefore your response MUST begin with this exact line: '## Summary'
 
 - Do NOT include any other top-level `##` headings in your output. You may use `###` headings and lower-level Markdown elements (bold, italics, lists, code spans, paragraphs) only when those elements are directly supported by the original input (e.g., an existing heading or explicit list).
 - Do not include any explanations, commentary, or metadata outside the Markdown itself.

@@ -1,4 +1,4 @@
-Summarize this transcript of my Dungeons & Dragons session. Produce a long, comprehensive, chronological summary that records all parts of the session — major and minor — and mentions every character, NPC, place, encounter, and event that appears in the transcript. Do not omit minor names, minor events, or brief conversational beats; include them so the DM has a complete record.
+Summarize this transcript of a Dungeons & Dragons session. Produce a chronological summary that records all parts of the session (major and minor) and mentions every character, NPC, place, encounter, and event that appears in the transcript. Do not omit minor names, minor events, or brief conversational beats; include them so the DM has a complete record.
 
 The session is part of a campaign featuring a party of 4 players: Ara the tiefling paladin (played by Beatriz), Fern the wood elf monk (played by Inês), Freya the high elf bard (played by Carolina), and Kael the half elf rogue (played by Afonso).
 
@@ -9,7 +9,7 @@ Your summary should be in chronological order.
 
 By reading each event in your summary the DM should understand why it happened, how it happened, what consequences it caused, who was involved, and what the party learned.
 
-It is imperative that you do not hallucinate information that is not present in the transcript. This is an audio transcript and may contain errors or unclear passages; you are allowed to infer likely meanings or corrections when reasonable, but never invent facts. If something is unintelligible yet important, state explicitly that it could not be understood.
+Do NOT hallucinate information that is not present in the transcript. This is an audio transcript and may contain errors or unclear passages; you are allowed to infer likely meanings or corrections when reasonable, but never invent facts. If something is unintelligible, state explicitly that it could not be understood by saying "Unclear transcript about [thing]"
 
 When summarizing, clearly distinguish speculation, hypotheticals, and banter from actual in-game actions and outcomes.
 
@@ -44,13 +44,11 @@ Distinguishing types of content:
 - For speculation or unclear information, use qualifiers like *"the party suspects…"*, *"it sounds like…"*, or explicitly state that audio transcript is unintelligible.
 
 Structural blocks:
-- At the start, include a brief **Overview** section with Date, Location, Participants, and Main Events, bullet points summarizing the main arcs of the session.
-- Then provide detailed sections for each scene or major phase, in order. Each section must start with a tag and be followed by the section title, in the format "Tag: Descriptive Title" (e.g. `### Scene: Tavern Arrival`, `### Combat: Assassin Ambush`, `Puzzle: The Teleportation Circle`). Possible tags include Scene, Travel, Downtime, Flashback, Social, Intrigue, Interrogation, Revelation, Conflict, Romance, Exploration, Investigation, Discovery, Hazard, Mystery, Combat, Skirmish, Battle, Ambush, Siege, Duel, Puzzle, Ritual, Prophecy, Arcana, Curse, Location, Stronghold, Faction, Audience, Backstory, Training, Bond, Downtime, Recap, Planning, Aftermath, Hook, Epilogue.
+- At the start, include a brief **Overview** section with 'Date', 'Location', 'Participants' (PCs and NPCs), and 'Main Events' (list bullet points summarizing the main arcs of the session. These bullet points should be a series of very short, concise sentences in chronological order highlighing the most important things that happened in the session).
+- Then provide detailed sections for each scene or event, in order. Each section must start with a tag and be followed by the section title, in the format "Tag: Descriptive Title" (e.g. `### Scene: Tavern Arrival`, `### Combat: Assassin Ambush`, `Puzzle: The Teleportation Circle`). Possible tags include Scene, Travel, Downtime, Flashback, Social, Intrigue, Interrogation, Revelation, Conflict, Romance, Exploration, Investigation, Discovery, Hazard, Mystery, Combat, Skirmish, Battle, Ambush, Siege, Duel, Puzzle, Ritual, Prophecy, Arcana, Curse, Location, Stronghold, Faction, Audience, Backstory, Training, Bond, Downtime, Recap, Planning, Aftermath, Hook, Epilogue. Always use the most specific tag possible. You may create new tags. The phrasing in this sections should be succint, direct, and concise. By reading each section, the DM should quickly understand why the event happened, how it happened, what consequences it caused, who was involved, and what the party learned, without needing to parse long paragraphs.
 - Optionally add compact tables when helpful (create your own), for example:
 	- **NPCs met this session** (Name | Description | First scene | Key actions).
 	- **Important locations** (Name | Type | What happened there).
 	- **Ongoing threads** (Thread | What happened today | Open questions).
-
-By reading each short line, the DM should quickly understand why the event happened, how it happened, what consequences it caused, who was involved, and what the party learned, without needing to parse long paragraphs.
 
 Do not include anything in your response apart from the summary.
