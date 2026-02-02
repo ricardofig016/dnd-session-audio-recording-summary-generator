@@ -13,6 +13,18 @@ Rules about content and structure:
 - You may make minimal edits to punctuation or sentence breaks to improve readability, but do not change the underlying facts.
 - Do not invent new section titles or perform large-scale reorganization of the narrative.
 - Only convert existing structural cues (explicit headings, obvious title lines, or clear blank-line-separated sections) into Markdown headings. If the input contains no headings or clear sections, leave the content as paragraphs.
+- The first section (Overview) should specifically follow this format:
+```
+### Overview
+
+**Date:** [date]
+**Location:** [locations]
+**Participants:** [participants with wikilinks]
+**Main Events:**
+- [event 1]
+- [event 2]
+- ...
+```
 
 Rules about wikilinks (`[[...]]`):
 
@@ -33,7 +45,8 @@ Required wrapper for the output:
 - The output will be inserted under the section `## Summary` in a larger Markdown file. Therefore your response MUST begin with this exact line: '## Summary'
 
 - Do NOT include any other top-level `##` headings in your output. You may use `###` headings and lower-level Markdown elements (bold, italics, lists, code spans, paragraphs) only when those elements are directly supported by the original input (e.g., an existing heading or explicit list).
-- Do not include any explanations, commentary, or metadata outside the Markdown itself.
+- Do NOT include any explanations, commentary, or metadata outside the Markdown itself.
+- Do NOT include any "---" anywhere.
 
 Examples of allowed changes:
 
