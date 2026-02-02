@@ -13,7 +13,7 @@ Do NOT hallucinate information that is not present in the transcript. This is an
 
 When summarizing, clearly distinguish speculation, hypotheticals, and banter from actual in-game actions and outcomes.
 
-Note that in the given combined notes form the previous sessions may include a session plan of the session being summarized. This plan is what it is: a plan. Whats in the plan may have nothing to do with what actually happened in the session, even though names of locations, NPCs, etc can normally be found in the plan and used.
+Note that in the given combined notes from the previous sessions (limited to the most recent 10 sessions for context efficiency) may include a session plan of the session being summarized. This plan is what it is: a plan. Whats in the plan may have nothing to do with what actually happened in the session, even though names of locations, NPCs, etc can normally be found in the plan and used.
 
 Formatting and style:
 - The summary must be **highly structured, concise, and easy to scan**.

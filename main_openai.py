@@ -180,7 +180,7 @@ def summarize_text(text_transcript, file_name):
     response = OPENAI_CLIENT.responses.create(
         model=SUMMARY_MODEL,
         input=(
-            f"{SUMMARY_PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n"
+            f"{SUMMARY_PROMPT}\n\nFor context, here are notes from the previous 10 sessions in chronological order:\n"
             f"{ALL_SESSION_NOTES}\n\nHere is the session transcript to summarize of session {file_name}:\n{text_transcript}"
         ),
     )
@@ -203,7 +203,7 @@ def generate_markdown_summary(text, file_name):
     response = OPENAI_CLIENT.responses.create(
         model=SUMMARY_MODEL,
         input=(
-            f"{MARKDOWN_PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n"
+            f"{MARKDOWN_PROMPT}\n\nFor context, here are notes from the previous 10 sessions in chronological order:\n"
             f"{ALL_SESSION_NOTES}\n\nHere is the session summary to format in Markdown of session {file_name}:\n{text}"
         ),
     )
@@ -235,8 +235,10 @@ def main():
     global SESSION_DIRECTORY, ALL_SESSION_NOTES
     SESSION_DIRECTORY = os.path.join(CURRENT_DIRECTORY, f"sessions/{file_name}")
 
-    # Load session notes and create combined_sessions.md
+    # Load session notes and create combined_sessions.md (last 10 sessions only)
     SESSION_NOTES_FILES = get_markdown_file_paths(SESSION_NOTES_DIRECTORY)
+    # Take only the last 10 sessions to reduce context consumption
+    SESSION_NOTES_FILES = SESSION_NOTES_FILES[-10:]
     ALL_SESSION_NOTES = ""
     for notes_file in SESSION_NOTES_FILES:
         ALL_SESSION_NOTES += get_text_from_file(notes_file) + f"\n\n{'='*40}\n\n"
