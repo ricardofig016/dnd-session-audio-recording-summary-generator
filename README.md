@@ -1,6 +1,6 @@
 # D&D Session Summary Generator from Audio Recordings
 
-Automatically transcribes and summarizes D&D session audio recordings using OpenAI's Whisper API and DeepSeek for intelligent summarization with Obsidian wikilinks.
+Automatically transcribes and summarizes D&D session audio recordings using OpenAI's Whisper API and the OpenAI Responses API for intelligent summarization with Obsidian wikilinks.
 
 - [D\&D Session Summary Generator from Audio Recordings](#dd-session-summary-generator-from-audio-recordings)
   - [Quick Setup](#quick-setup)
@@ -29,7 +29,6 @@ pip install python-dotenv openai pydub
 
 ```
 OPENAI_API_KEY=your-key-here
-DEEPSEEK_API_KEY=your-key-here
 ```
 
 **3. Run:**
@@ -44,7 +43,7 @@ Output: `sessions/audio_name/{transcript.txt, summary.txt, summary.md}`
 
 - **Automatic Transcription** - OpenAI Whisper (cached)
 - **Large File Handling** - Auto-splits files into MP3 chunks for API compliance
-- **AI Summarization** - DeepSeek with campaign context
+- **AI Summarization** - OpenAI Responses API with campaign context
 - **Wikilinks** - Obsidian-style markdown
 - **Session Context** - Maintains narrative continuity across all prior sessions
 - **Audio Formats** - m4a, mp3, wav, etc.
@@ -78,13 +77,17 @@ Output: `sessions/audio_name/{transcript.txt, summary.txt, summary.md}`
 
 **Audio Chunking** (edit `main_openai.py` globals):
 
-- `CHUNK_BITRATE = "64k"` - MP3 bitrate for audio chunks (minimum quality for voice transcription, reduce for faster processing)
+- `CHUNK_BITRATE = "48k"` - MP3 bitrate for audio chunks (minimum quality for voice transcription, reduce for faster processing)
 - `OPENAI_MAX_FILE_SIZE = 25 * 1024 * 1024` - OpenAI API size limit (do not modify)
 
 **Transcription** (edit `main_openai.py` globals):
 
 - `OPENAI_TRANSCRIPTION_MODEL = "whisper-1"` - Change to `"gpt-4o-transcribe"` for higher quality
 - `SESSION_NOTES_DIRECTORY = "..."` - Path to external session notes (used for campaign context)
+
+**Summarization model** (edit `main_openai.py` globals):
+
+- `SUMMARY_MODEL = "gpt-5-mini"` - Model used for summary and Markdown formatting
 
 **Summarization** (edit `prompts/` files):
 
@@ -101,8 +104,8 @@ Output: `sessions/audio_name/{transcript.txt, summary.txt, summary.md}`
 2. **Transcription** (cached) - OpenAI Whisper transcribes each chunk
    - Individual transcripts saved to `transcript_segments.txt`
    - Combined into `transcript.txt`
-3. **Summarization** (with all prior session context) → `summary.txt`
-4. **Markdown Formatting** (with Obsidian wikilinks) → `summary.md`
+3. **Summarization** (with all prior session context, OpenAI Responses API) → `summary.txt`
+4. **Markdown Formatting** (with Obsidian wikilinks, OpenAI Responses API) → `summary.md`
 
 Each summary includes all previous sessions for narrative continuity.
 
@@ -139,8 +142,7 @@ python custom_prompt.py  # Enter session number + custom question
 - Python 3.8+
 - Internet connection
 - ffmpeg (for audio processing)
-- OpenAI account with API credits (transcription)
-- DeepSeek account with API credits (summarization)
+- OpenAI account with API credits (transcription and summarization)
 
 ## Troubleshooting
 

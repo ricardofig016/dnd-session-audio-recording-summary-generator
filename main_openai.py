@@ -44,16 +44,10 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
     raise ValueError("OPENAI_API_KEY is not set")
 
-OPENAI_TRANSCRIPTION_MODEL = "whisper-1"  # or use "gpt-4o-transcribe" for better quality
+OPENAI_TRANSCRIPTION_MODEL = "whisper-1"
 OPENAI_CLIENT = OpenAI(api_key=OPENAI_API_KEY)
 
-# DeepSeek configuration for summarization and markdown formatting
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-if not DEEPSEEK_API_KEY:
-    raise ValueError("DEEPSEEK_API_KEY is not set")
-
-BASE_DEEPSEEK_API_URL = "https://api.deepseek.com"
-DEEPSEEK_CLIENT = OpenAI(api_key=DEEPSEEK_API_KEY, base_url=BASE_DEEPSEEK_API_URL)
+SUMMARY_MODEL = "gpt-5-mini"
 
 with open(os.path.join(CURRENT_DIRECTORY, "prompts/transcription.txt"), "r", encoding="utf-8") as file:
     TRANSCRIPTION_PROMPT = file.read()
@@ -179,21 +173,18 @@ def transcribe_audio(audio_file):
 
 
 # Summarize the transcript
-def summarize_text(text_transcript):
+def summarize_text(text_transcript, file_name):
     print("Summarizing text...")
 
     start_time = time.time()
-    response = DEEPSEEK_CLIENT.chat.completions.create(
-        model="deepseek-reasoner",
-        messages=[
-            {
-                "role": "user",
-                "content": f"{SUMMARY_PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n{ALL_SESSION_NOTES}\n\nHere is the session transcript to summarize:\n{text_transcript}",
-            },
-        ],
-        stream=False,
+    response = OPENAI_CLIENT.responses.create(
+        model=SUMMARY_MODEL,
+        input=(
+            f"{SUMMARY_PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n"
+            f"{ALL_SESSION_NOTES}\n\nHere is the session transcript to summarize of session {file_name}:\n{text_transcript}"
+        ),
     )
-    summarized_text = response.choices[0].message.content
+    summarized_text = "".join(item.text for output in response.output if output.type == "message" for item in output.content if item.type == "output_text")
     end_time = time.time()
     print(f"Summarization completed in {end_time - start_time:.2f} seconds.")
 
@@ -205,21 +196,18 @@ def summarize_text(text_transcript):
 
 
 # Generate Markdown summary
-def generate_markdown_summary(text):
+def generate_markdown_summary(text, file_name):
     print("Generating Markdown text...")
 
     start_time = time.time()
-    response = DEEPSEEK_CLIENT.chat.completions.create(
-        model="deepseek-reasoner",
-        messages=[
-            {
-                "role": "user",
-                "content": f"{MARKDOWN_PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n{ALL_SESSION_NOTES}\n\nHere is the session summary to format in Markdown:\n{text}",
-            },
-        ],
-        stream=False,
+    response = OPENAI_CLIENT.responses.create(
+        model=SUMMARY_MODEL,
+        input=(
+            f"{MARKDOWN_PROMPT}\n\nFor context, here are notes from all previous sessions in chronological order:\n"
+            f"{ALL_SESSION_NOTES}\n\nHere is the session summary to format in Markdown of session {file_name}:\n{text}"
+        ),
     )
-    markdown_text = response.choices[0].message.content
+    markdown_text = "".join(item.text for output in response.output if output.type == "message" for item in output.content if item.type == "output_text")
     end_time = time.time()
     print(f"Markdown generation completed in {end_time - start_time:.2f} seconds.")
 
@@ -266,8 +254,8 @@ def main():
     if not transcript:
         transcript = transcribe_audio(audio_file)
 
-    summary = summarize_text(transcript)
-    markdown_summary = generate_markdown_summary(summary)
+    summary = summarize_text(transcript, file_name)
+    markdown_summary = generate_markdown_summary(summary, file_name)
 
     markdown_summary_path = os.path.join(SESSION_DIRECTORY, MARKDOWN_SUMMARY_FILE_NAME)
     print(f"Summary saved to {markdown_summary_path}")

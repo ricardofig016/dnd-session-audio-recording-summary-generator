@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a D&D session audio recording pipeline that automates transcription and summarization of tabletop gaming sessions. The system converts raw audio files into comprehensive markdown summaries using OpenAI Whisper API for transcription, then DeepSeek API for LLM-powered summarization and formatting.
+This is a D&D session audio recording pipeline that automates transcription and summarization of tabletop gaming sessions. The system converts raw audio files into comprehensive markdown summaries using OpenAI Whisper API for transcription, then the OpenAI Responses API for LLM-powered summarization and formatting.
 
 ## Architecture & Data Flow
 
@@ -16,7 +16,7 @@ This is a D&D session audio recording pipeline that automates transcription and 
 - Flexible naming: accepts any audio file format
 - **Critical feature**: Automatically handles large files by splitting into MP3 chunks (max 25MB each)
   - Always splits, even single chunk for consistency
-  - Uses `CHUNK_BITRATE = "64k"` (configurable, minimum quality for voice)
+    - Uses `CHUNK_BITRATE = "48k"` (configurable, minimum quality for voice)
   - Chunks stored in `sessions/{name}/chunks/`
   - Individual chunk transcripts saved to `transcript_segments.txt`
   - All transcripts combined into `transcript.txt`
@@ -41,9 +41,9 @@ Transcribe each chunk via OpenAI/Local Whisper
     ↓
 Combine transcripts → transcript.txt
     ↓
-Summarize with DeepSeek (includes ALL prior session context)
+Summarize with OpenAI Responses API (includes ALL prior session context)
     ↓
-Generate Markdown with wikilinks via DeepSeek
+Generate Markdown with wikilinks via OpenAI Responses API
     ↓
 Output: summary.txt, summary.md
 ```
@@ -100,9 +100,9 @@ ALL LLM requests include **full context from all previous sessions** to maintain
 # Pattern used in summarize_text(), generate_markdown_summary():
 content = f"{PROMPT}\n\nFor context, here are notes from all previous sessions:\n{ALL_SESSION_NOTES}\n\nHere is the session transcript:\n{text}"
 
-response = DEEPSEEK_CLIENT.chat.completions.create(
-    model="deepseek-reasoner",  # Always use this model for extended reasoning
-    messages=[{"role": "user", "content": content}],
+response = OPENAI_CLIENT.responses.create(
+    model="gpt-5-mini",
+    input=content,
 )
 ```
 
@@ -121,7 +121,6 @@ This is essential: the LLM needs character arcs, relationships, and story progre
 
 ```
 OPENAI_API_KEY=sk-...
-DEEPSEEK_API_KEY=sk-...
 ```
 
 **API Clients**:
@@ -130,8 +129,8 @@ DEEPSEEK_API_KEY=sk-...
 # OpenAI (transcription)
 OPENAI_CLIENT = OpenAI(api_key=OPENAI_API_KEY)
 
-# DeepSeek (summarization) - uses OpenAI SDK with custom base_url
-DEEPSEEK_CLIENT = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
+# OpenAI (summarization)
+OPENAI_CLIENT = OpenAI(api_key=OPENAI_API_KEY)
 ```
 
 ### Prompt Template Structure
@@ -174,7 +173,7 @@ transcript_text = response  # Direct string, not response.text
 ### Running Full Pipeline (Recommended)
 
 ```powershell
-# Ensure .env has OPENAI_API_KEY and DEEPSEEK_API_KEY
+# Ensure .env has OPENAI_API_KEY
 python main_openai.py "C:/path/to/my_session.m4a"
 # Outputs to: sessions/my_session/{transcript.txt, summary.txt, summary.md}
 ```
@@ -206,13 +205,13 @@ python custom_prompt.py  # Interactive: session number + your question
 - File not found: Raise `FileNotFoundError` with expected path
 - Empty files: Raise `ValueError` with context
 - Transcription failures: Report duration and file size
-- DeepSeek API timeouts: Retry or increase timeout
+- OpenAI Responses API timeouts: Retry or increase timeout
 - Audio splitting failures: Check ffmpeg availability (pydub dependency)
 
 ## Performance & Optimization
 
 - **OpenAI transcription**: 30 seconds to 2 minutes depending on audio length and chunk count
-- **DeepSeek summarization**: 2-5 minutes depending on transcript size (uses extended reasoning)
+- **OpenAI summarization**: 2-5 minutes depending on transcript size
 - **Session context growth**: Combined session context increases with each new session (token count grows)
 - **Iteration workflow**: Delete summary files only (keep transcripts) for fast re-summarization
 - **Audio compression**: 64k bitrate MP3 reduces file size ~5x vs WAV while maintaining voice clarity
@@ -221,6 +220,6 @@ python custom_prompt.py  # Interactive: session number + your question
 
 1. **Don't skip audio splitting**: Even small files go through splitting for consistency
 2. **Always include session context**: LLM requests without ALL prior sessions lose narrative continuity
-3. **Use "deepseek-reasoner" model**: Other DeepSeek models won't work; this model enables extended thinking
+3. **Use "gpt-5-mini" model**: Other models may change output quality and formatting
 4. **Respect prompt structure**: Changing prompts requires understanding the specific formatting rules (tags, sections, tables)
 5. **File path consistency**: Always use forward slashes; SESSION_NOTES_DIRECTORY is user-specific external path
