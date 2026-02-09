@@ -1,4 +1,5 @@
 import os
+import shutil
 import sys
 import time
 from dotenv import load_dotenv
@@ -168,6 +169,12 @@ def transcribe_audio(audio_file):
     transcript_path = os.path.join(SESSION_DIRECTORY, TRANSCRIPT_FILE_NAME)
     with open(transcript_path, "w", encoding="utf-8") as file:
         file.write(combined_transcript)
+
+    # Clean up temporary chunks directory
+    chunks_dir = os.path.join(SESSION_DIRECTORY, "chunks")
+    if os.path.exists(chunks_dir):
+        shutil.rmtree(chunks_dir)
+        print(f"Cleaned up temporary chunks directory")
 
     return combined_transcript
 
