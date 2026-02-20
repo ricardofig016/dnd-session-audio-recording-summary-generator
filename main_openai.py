@@ -229,11 +229,15 @@ def generate_markdown_summary(text, file_name):
 def main():
     # Check if audio file path is provided
     if len(sys.argv) < 2:
-        print("Usage: python main_openai.py <audio_file_path>")
+        print("Usage: python main_openai.py <audio_file_path> [--transcript]")
         print("Example: python main_openai.py 'C:/path/to/my_audio.m4a'")
+        print("Options:")
+        print("  --transcript  Only transcribe audio, skip summary and markdown generation")
         sys.exit(1)
 
-    audio_file = sys.argv[1]
+    # Parse arguments
+    transcript_only = "--transcript" in sys.argv
+    audio_file = sys.argv[1] if sys.argv[1] != "--transcript" else sys.argv[2]
 
     # Get filename without extension for folder name
     file_name = os.path.splitext(os.path.basename(audio_file))[0]
@@ -262,6 +266,11 @@ def main():
             transcript = file.read()
     if not transcript:
         transcript = transcribe_audio(audio_file)
+
+    if transcript_only:
+        print(f"Transcription completed. Transcript saved to {transcript_path}")
+        print("Skipping summary and markdown generation (--transcript flag enabled)")
+        return
 
     summary = summarize_text(transcript, file_name)
     markdown_summary = generate_markdown_summary(summary, file_name)
